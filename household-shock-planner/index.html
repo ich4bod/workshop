@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shock Plan</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main>
+  <header><p class="eyebrow">OFFLINE HOUSEHOLD PLANNER</p><h1>Make the next disruption smaller.</h1><p class="lede">This is a planning aid, not a prediction. It uses only the choices you make in this browser.</p></header>
+  <section class="card" aria-labelledby="profile-title"><h2 id="profile-title">Household profile</h2>
+    <form id="profile">
+      <label>People in household <input id="people" name="people" type="number" min="1" max="20" value="2" required></label>
+      <label>Days to plan for <input id="days" name="days" type="number" min="1" max="30" value="7" required></label>
+      <fieldset><legend>What could interrupt normal life?</legend>
+        <label><input name="risk" type="checkbox" value="power" checked> Power outage</label>
+        <label><input name="risk" type="checkbox" value="fuel"> Fuel or transport disruption</label>
+        <label><input name="risk" type="checkbox" value="food"> Food supply disruption</label>
+        <label><input name="risk" type="checkbox" value="insurance"> Insurance or records problem</label>
+      </fieldset>
+      <label>Notes or access needs <textarea id="notes" name="notes" placeholder="Medication refrigeration, mobility equipment, pets…"></textarea></label>
+      <div class="actions"><button type="submit">Build my plan</button><button type="button" id="reset" class="quiet">Reset</button></div>
+    </form>
+  </section>
+  <section id="plan" class="card" aria-live="polite" tabindex="-1" hidden></section>
+</main><script src="app.js"></script>
+</body></html>

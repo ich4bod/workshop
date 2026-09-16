@@ -1,0 +1,11 @@
+[project]
+name = "archive-mirror-checker"
+version = "0.1.0"
+description = "Deterministic offline archive mirror response classifier"
+requires-python = ">=3.11"
+
+[project.scripts]
+archive-mirror-checker = "archive_mirror_checker:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

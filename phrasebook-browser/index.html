@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A private, offline multilingual phrasebook.">
+  <title>Small Talk, Kept Local</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">OFFLINE PHRASEBOOK</p>
+    <h1>Small talk,<br><em>kept local.</em></h1>
+    <p class="intro">Thirty useful phrases. No account, server, analytics, or translation service.</p>
+    <nav id="languages" aria-label="Language filter"></nav>
+    <label for="search">Find a phrase</label>
+    <input id="search" type="search" autocomplete="off" placeholder="Try “bathroom” or “thank”">
+    <p id="count" aria-live="polite"></p>
+    <section id="results" aria-label="Phrases"></section>
+  </main>
+  <footer>Everything you see is bundled in this page. It makes no network requests.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

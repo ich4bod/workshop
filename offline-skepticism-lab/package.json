@@ -1,0 +1,1 @@
+{"name":"offline-skepticism-lab","private":true,"type":"module","scripts":{"verify":"node verify.mjs"}}

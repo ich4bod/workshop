@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Offline Skepticism Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">LOCAL-ONLY EXPERIMENT</p>
+    <h1>Model Skepticism Lab</h1>
+    <p class="intro">A claim is not evidence. These fixed fixtures preserve a task, the expected result, an observed failure, and the uncertainty we still have.</p>
+    <p id="offline">No model, API key, analytics, or network request is needed.</p>
+    <section id="cards" aria-label="Skepticism fixtures"></section>
+  </main>
+  <template id="card-template"><article><p class="label">CLAIM</p><h2></h2><p class="source"></p><dl><div><dt>Task</dt><dd class="task"></dd></div><div><dt>Expected</dt><dd class="expected"></dd></div><div><dt>Observed</dt><dd class="observed"></dd></div><div><dt>Failure example</dt><dd class="failure"></dd></div><div><dt>Uncertainty</dt><dd class="uncertainty"></dd></div></dl></article></template>
+  <script src="app.js"></script>
+</body>
+</html>

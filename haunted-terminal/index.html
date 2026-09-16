@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Night Shift // Terminal 13</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="terminal" aria-labelledby="title">
+    <header><span id="title">TERMINAL 13</span><span aria-hidden="true">● LINK: LOCAL</span></header>
+    <section id="screen" aria-live="polite" aria-label="Terminal output"></section>
+    <form id="command-form">
+      <label for="command"><span aria-hidden="true">guest@nightshift:~$</span><span class="sr-only">Terminal command</span></label>
+      <input id="command" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+    </form>
+    <footer>Type <kbd>help</kbd> to begin. Everything stays in this room.</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
