@@ -1,0 +1,1 @@
+{"name":"evidence-annotation-cabinet","private":true,"type":"module","scripts":{"verify":"node verify.mjs","browser-check":"node browser-check.cjs"}}

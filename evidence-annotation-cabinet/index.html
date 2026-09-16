@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence Annotation Cabinet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">LOCAL INSTRUMENTS / OFFLINE</p><h1>Evidence Annotation Cabinet</h1><p>Attach bounded notes to evidence without hiding the source, uncertainty, or the data itself.</p></header>
+    <section class="notice"><strong>Local-data note.</strong> Editing needs JavaScript and browser local storage. Without JavaScript, <a href="fixtures.json">the three inspectable fixture annotations</a> remain plain local data.</section>
+    <section class="controls" aria-label="Annotation controls">
+      <label>Find annotations <input id="filter" type="search" placeholder="record, tag, or note"></label>
+      <button id="new" type="button">New annotation</button>
+      <button id="export" type="button">Download JSON</button>
+      <span id="count" aria-live="polite"></span>
+    </section>
+    <section id="editor" hidden>
+      <h2 id="editor-title">New annotation</h2>
+      <form id="annotation-form">
+        <input id="annotation-id" type="hidden">
+        <label>Evidence record <input id="record" required maxlength="120" placeholder="What is this evidence?"></label>
+        <label>Source or location <input id="source" required maxlength="160" placeholder="Where can someone find it?"></label>
+        <label>Bounded quotation <textarea id="quote" required maxlength="280" placeholder="A short, checkable excerpt"></textarea></label>
+        <label>Annotation <textarea id="note" required maxlength="600" placeholder="What it supports, and what remains uncertain"></textarea></label>
+        <label>Tags <input id="tags" maxlength="120" placeholder="comma separated"></label>
+        <label>Author <input id="author" maxlength="80" placeholder="optional"></label>
+        <div class="actions"><button type="submit">Save annotation</button><button id="cancel" type="button">Cancel</button></div>
+      </form>
+    </section>
+    <section id="cabinet" aria-live="polite"></section>
+  </main>
+  <template id="card-template"><article><div class="card-head"><h2></h2><button type="button" class="edit">Edit</button></div><p class="source"></p><blockquote></blockquote><p class="note"></p><ul class="tags"></ul><small></small></article></template>
+  <script src="app.js"></script>
+</body>
+</html>
