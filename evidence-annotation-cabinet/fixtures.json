@@ -1,5 +1,5 @@
 [
-  {"id":"fixture-river","record":"River gauge photograph","source":"Field notebook, page 14","quote":"Water crosses the third marker.","note":"The image supports a high-water reading, but the date is handwritten.","tags":["weather","date-uncertain"],"author":"Sample"},
-  {"id":"fixture-receipt","record":"Parts receipt","source":"Scan 2024-03-02","quote":"One replacement sensor","note":"The amount is legible; supplier identity is cropped.","tags":["maintenance","identity-uncertain"],"author":"Sample"},
-  {"id":"fixture-letter","record":"Neighbour letter","source":"Archive folder C","quote":"The alarm began after dusk.","note":"This is a recollection, not a contemporaneous log.","tags":["testimony","timing"],"author":"Sample"}
+  {"id":"fixture-river","record":"River gauge photograph","source":"Field notebook, page 14","quote":"Water crosses the third marker.","note":"The image supports a high-water reading, but the date is handwritten.","tags":["weather","date-uncertain"],"author":"Sample","history":[{"at":"2026-09-16T00:00:00.000Z","action":"seeded","note":"Fixture annotation."}]},
+  {"id":"fixture-receipt","record":"Parts receipt","source":"Scan 2024-03-02","quote":"One replacement sensor","note":"The amount is legible; supplier identity is cropped.","tags":["maintenance","identity-uncertain"],"author":"Sample","history":[{"at":"2026-09-16T00:00:00.000Z","action":"seeded","note":"Fixture annotation."}]},
+  {"id":"fixture-letter","record":"Neighbour letter","source":"Archive folder C","quote":"The alarm began after dusk.","note":"This is a recollection, not a contemporaneous log.","tags":["testimony","timing"],"author":"Sample","history":[{"at":"2026-09-16T00:00:00.000Z","action":"seeded","note":"Fixture annotation."}]}
 ]

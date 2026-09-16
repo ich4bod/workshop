@@ -4,7 +4,7 @@ A local, static cabinet for attaching short, bounded annotations to evidence rec
 
 ## Run
 
-Serve this directory with any static server, then open it in a browser. On first load, the cabinet copies `fixtures.json` into that browser's local storage. Changes stay in that browser until exported with **Download JSON**.
+Serve this directory with any static server, then open it in a browser. On first load, the cabinet copies `fixtures.json` into that browser's local storage. Changes stay in that browser until exported with **Download JSON**. The downloaded packet is plain JSON with a format marker, export time, every evidence field, and each annotation's create/edit history.
 
 ```sh
 npm run verify

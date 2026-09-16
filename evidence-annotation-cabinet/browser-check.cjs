@@ -26,6 +26,13 @@ server.listen(8765, '127.0.0.1', async () => {
     if (await page.locator('#cabinet article').count() !== 1 || !(await page.locator('#cabinet').textContent()).includes('Edited operational note.')) throw new Error('Filter or edit failed.');
     await page.reload({ waitUntil: 'networkidle' });
     if (!(await page.locator('#cabinet').textContent()).includes('Edited operational note.')) throw new Error('Saved annotation did not survive reload.');
+    const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Download JSON' }).click()]);
+    const packet = JSON.parse(await fs.promises.readFile(await download.path(), 'utf8'));
+    const saved = packet.annotations.find((item) => item.record === 'Pump log');
+    if (packet.format !== 'evidence-annotation-cabinet/v1' || !saved || !saved.history.length || saved.source !== 'Log book 7') throw new Error('Export lost packet evidence or history.');
+    const viewer = await browser.newContext(); const viewerPage = await viewer.newPage(); await viewerPage.setContent(`<pre>${JSON.stringify(packet)}</pre>`);
+    if (!(await viewerPage.locator('pre').textContent()).includes('Edited operational note.')) throw new Error('A second offline viewer could not inspect the packet.');
+    await viewer.close();
     const noJs = await browser.newContext({ javaScriptEnabled: false }); const fallback = await noJs.newPage(); await fallback.goto('http://127.0.0.1:8765/');
     if (!(await fallback.locator('.notice').textContent()).includes('JavaScript')) throw new Error('No-JavaScript limitation is not visible.');
     console.log('browser smoke passed: create, edit, filter, reload, and no-JS notice'); await noJs.close();

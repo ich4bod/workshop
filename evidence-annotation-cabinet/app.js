@@ -7,7 +7,7 @@
   const count = document.querySelector('#count');
   let annotations = [];
 
-  const normalise = (item) => ({ ...item, tags: Array.isArray(item.tags) ? item.tags : String(item.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean) });
+  const normalise = (item) => ({ ...item, tags: Array.isArray(item.tags) ? item.tags : String(item.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean), history: Array.isArray(item.history) ? item.history : [] });
   const persist = () => localStorage.setItem(storageKey, JSON.stringify(annotations));
   const openEditor = (item = {}) => {
     form.reset();
@@ -48,14 +48,17 @@
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const value = (name) => document.querySelector(`#${name}`).value.trim();
-    const item = normalise({ id: value('annotation-id') || `annotation-${crypto.randomUUID()}`, record: value('record'), source: value('source'), quote: value('quote'), note: value('note'), tags: value('tags'), author: value('author') });
-    const index = annotations.findIndex((annotation) => annotation.id === item.id);
+    const id = value('annotation-id') || `annotation-${crypto.randomUUID()}`;
+    const index = annotations.findIndex((annotation) => annotation.id === id);
+    const history = index === -1 ? [] : annotations[index].history;
+    const item = normalise({ id, record: value('record'), source: value('source'), quote: value('quote'), note: value('note'), tags: value('tags'), author: value('author'), history: [...history, { at: new Date().toISOString(), action: index === -1 ? 'created' : 'edited', note: index === -1 ? 'Created in cabinet.' : 'Edited in cabinet.' }] });
     if (index === -1) annotations.unshift(item); else annotations[index] = item;
     persist(); closeEditor(); render();
   });
   document.querySelector('#export').addEventListener('click', () => {
-    const blob = new Blob([JSON.stringify(annotations, null, 2) + '\n'], { type: 'application/json' });
-    const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'annotations.json' });
+    const packet = { format: 'evidence-annotation-cabinet/v1', exportedAt: new Date().toISOString(), annotations };
+    const blob = new Blob([JSON.stringify(packet, null, 2) + '\n'], { type: 'application/json' });
+    const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'evidence-annotation-packet.json' });
     link.click(); URL.revokeObjectURL(link.href);
   });
   start().catch((error) => { cabinet.textContent = `Could not open local annotations: ${error.message}`; });
