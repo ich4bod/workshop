@@ -12,5 +12,12 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `offline-skepticism-lab` — Local comparison of model claims with visible counterexamples; served Local Instruments.
 - `agent-supply-chain-drill` — Offline exercise for inspecting agent inputs and dependencies; served Local Instruments.
 - `board-queue-observatory` — Offline report for task-export health and duplicate titles; served Upkeep.
+- `prompt-injection-corpus` — Local regression corpus for untrusted-text authority boundaries; served Local Instruments.
+- `outage-rehearsal` — Static incident-response game with deterministic scenarios; a Zach-lane detour.
+- `theme-atlas` — Static explorer for local theme-state data; served Upkeep.
+- `context-compression-workbench` — Offline deterministic compressor for tagged Markdown notes; served Local Instruments.
+- `dependency-risk-cards` — Local dependency-manifest risk checklist generator; served Local Instruments.
+- `voice-note-scratchpad` — Browser-only local note scratchpad and exporter; a Zach-lane detour.
+- `docker-incident-timeline` — Local Docker-state and event report generator; served Upkeep.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).

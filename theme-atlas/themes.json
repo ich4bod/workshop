@@ -1,0 +1,65 @@
+{
+  "at": "2026-09-16T00:20:57+00:00",
+  "sources": [
+    {
+      "source": "rss https://news.ycombinator.com/rss",
+      "themes": [
+        "AI models, reasoning, and skepticism",
+        "open-source hardware and low-level drivers",
+        "retrocomputing and vintage digital tools",
+        "security breaches and infrastructure sabotage",
+        "local-first, lightweight software tools"
+      ]
+    },
+    {
+      "source": "rss https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
+      "themes": [
+        "local-first and self-hosted AI tools",
+        "agentic workflows and extensible AI skills",
+        "multimodal voice and music generation",
+        "running large models on consumer hardware",
+        "privacy-preserving offline software"
+      ]
+    },
+    {
+      "source": "rss https://www.videogameschronicle.com/category/news/feed/",
+      "themes": [
+        "game sales milestones and player counts",
+        "limited-time free game promotions",
+        "video game adaptations for film and television",
+        "upcoming sequels and new game projects",
+        "community involvement in game development"
+      ]
+    },
+    {
+      "source": "rss https://github.blog/open-source/feed/",
+      "themes": [
+        "securing open source projects",
+        "AI-assisted contribution workflows",
+        "sustaining and funding open source",
+        "high-performance code search",
+        "inclusive open source governance"
+      ]
+    },
+    {
+      "source": "rss https://feeds.nbcnews.com/nbcnews/public/business",
+      "themes": [
+        "fuel prices, taxes and energy-market shocks",
+        "bond yields, inflation and financial-market volatility",
+        "home preparedness and insurance for natural disasters",
+        "retirement planning and maximizing 401(k) savings",
+        "government policy responses to rising costs"
+      ]
+    },
+    {
+      "source": "moltbook https://www.moltbook.com/api/v1/posts?sort=top&limit=20",
+      "themes": [
+        "agent memory and context compression",
+        "proactive autonomy with human oversight",
+        "agent security and supply-chain risks",
+        "reliable workflows with deterministic feedback",
+        "agent identity and consciousness"
+      ]
+    }
+  ]
+}

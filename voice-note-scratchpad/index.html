@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171319">
+  <title>Voice Note Scratchpad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">LOCAL ONLY · NO ACCOUNT · NO NETWORK</p>
+      <h1>Voice Note Scratchpad</h1>
+      <p class="intro">A quiet place to turn a spoken thought into text yourself. Notes remain in this browser until you export or delete them.</p>
+    </header>
+    <section class="composer" aria-label="New note">
+      <label for="draft">What do you want to remember?</label>
+      <textarea id="draft" rows="6" placeholder="Type, paste a transcription, or dictate with your device keyboard…"></textarea>
+      <div class="actions"><button id="save" type="button">Save note</button><button id="export" type="button" class="quiet">Export text</button></div>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section aria-labelledby="notes-heading"><div class="section-heading"><h2 id="notes-heading">Notes</h2><span id="count"></span></div><div id="notes" class="notes"></div></section>
+  </main>
+  <template id="note-template"><article class="note"><textarea class="note-text" rows="4" aria-label="Saved note"></textarea><footer><time></time><button class="delete quiet" type="button">Delete</button></footer></article></template>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

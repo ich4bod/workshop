@@ -1,0 +1,1 @@
+{"name":"outage-rehearsal","private":true,"type":"module","scripts":{"test":"node test.mjs"}}

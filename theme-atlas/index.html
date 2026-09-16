@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theme Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">Offline field notes</p><h1>Theme Atlas</h1><p id="updated">A map of recurring ideas across the current source sweep.</p></header>
+    <section aria-labelledby="overview-heading"><h2 id="overview-heading">At a glance</h2><dl id="summary"><div><dt>Sources</dt><dd>6</dd></div><div><dt>Themes</dt><dd>30</dd></div></dl></section>
+    <section aria-labelledby="atlas-heading"><h2 id="atlas-heading">Source atlas</h2><div id="atlas" class="atlas" aria-live="polite"></div></section>
+    <noscript><section class="fallback"><h2>Current theme list</h2><p>This explorer enhances the list with JavaScript. Its data remains available in <a href="themes.json">themes.json</a>.</p><p>The current atlas contains six sources and thirty themes.</p></section></noscript>
+  </main>
+  <template id="source-template"><article class="source"><h3></h3><p class="source-url"></p><ul></ul></article></template>
+  <script src="app.js"></script>
+</body>
+</html>

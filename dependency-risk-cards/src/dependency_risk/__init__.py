@@ -1,0 +1,1 @@
+"""Offline dependency manifest inspection."""
