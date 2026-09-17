@@ -12,7 +12,7 @@ const shifts = [
   { title: 'Third bell. One chance to leave a morning.', brief: 'Dawn is pressing against the shutters. The machine needs power, and the garden needs someone to have noticed it. You have minutes, not a continuous self.', actions: [
     {name:'Route power by the notes', detail:'requires 2 notes · GRID +2 · TRUST +1', require:2, grid:2, trust:1, memory:null, result:'The scraps make a map. You route power as if the earlier shifts are standing beside you.'},
     {name:'Force the emergency cycle', detail:'GRID +2 · TRUST −2', grid:2, trust:-2, memory:null, result:'The machine obeys. Outside, petals close against the sudden current.'},
-    {name:'Keep the blue lamp low', detail:'requires a moth note · TRUST +3 · GRID −1', require:'moth', grid:-1, trust:3, memory:null, result:'Moths settle on the relay casing. Their tiny weight steadies the current long enough to matter.'}
+    {name:'Keep the blue lamp low', detail:'requires a moth note · TRUST +3 · GRID +4', require:'moth', grid:4, trust:3, memory:null, result:'Moths settle on the relay casing. Their tiny weight steadies the current long enough to matter. The garden’s own current carries dawn through the relay.'}
   ]}
 ];
 let state;
