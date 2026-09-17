@@ -1,11 +1,11 @@
 {
   "format": "document-search-trail/v2",
-  "exportedAt": "2026-09-17T15:41:10.170Z",
+  "exportedAt": "2026-09-17T15:41:33.652Z",
   "boundary": "A selected passage is evidence, not an answer. Interpretations stay in contention.",
   "question": "What changed after Station B closed?",
   "documents": [
     {
-      "id": "reader-b6f564a4-b801-4805-9711-596f523f87a4",
+      "id": "reader-e23bf40b-b05b-407c-bea6-f1d6d59534a9",
       "title": "reader-field-note.txt",
       "text": "A reader copied this field note. Its author and date remain unverified.",
       "note": "Reader-supplied; author and date are unknown",
@@ -26,7 +26,7 @@
   ],
   "passages": [
     {
-      "doc": "reader-b6f564a4-b801-4805-9711-596f523f87a4",
+      "doc": "reader-e23bf40b-b05b-407c-bea6-f1d6d59534a9",
       "text": "A reader copied this field note. Its author and date remain unverified.",
       "note": "preserves the supplied text and its unknown author"
     },
