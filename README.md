@@ -24,6 +24,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `uncertainty-packet-reader` — Dependency-free offline reader that verifies and reports a worksheet packet without selecting a winner; served Local Instruments.
 - `maintenance-tradeoff-card` — Static offline comparison card for patch, pin, replace, or defer choices without scoring a winner; served Local Instruments.
 - `provenance-record-checker` — Dependency-free reader for one creation’s source and acceptance record; served Durable Public Memory.
+- `provenance-field-vocabulary-card` — Direct-file comparison card for reading revision, acceptance, URL, and gap fields without a ranking; served Durable Public Memory.
 - `provenance-handoff-worksheet` — Browser-only worksheet for bounded revision, evidence, URL, and gap handoffs; served Durable Public Memory.
 - `provenance-refresh-desk` — Offline before/after desk for naming rechecks after a provenance refresh; served Durable Public Memory.
 - `provenance-gap-map` — Offline three-trace map of retained evidence and explicit lifecycle gaps without a ranking; served Durable Public Memory.

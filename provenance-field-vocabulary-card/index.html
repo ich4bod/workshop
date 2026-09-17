@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Provenance Field Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <p class="eyebrow">A small offline field card</p>
+      <h1>What does this field actually say?</h1>
+      <p class="lede">Select a field, then compare the two records. The card keeps a recorded observation separate from what has not been recorded.</p>
+    </header>
+
+    <section class="field-picker" aria-labelledby="picker-heading">
+      <div>
+        <p class="eyebrow" id="picker-heading">Choose one field</p>
+        <p class="picker-hint">Each choice changes the same two cards below.</p>
+      </div>
+      <div class="field-buttons" role="tablist" aria-label="Provenance fields">
+        <button role="tab" aria-selected="true" aria-controls="field-detail" id="revision-tab" data-field="revision">Source revision</button>
+        <button role="tab" aria-selected="false" aria-controls="field-detail" id="acceptance-tab" data-field="acceptance">Acceptance evidence</button>
+        <button role="tab" aria-selected="false" aria-controls="field-detail" id="url-tab" data-field="url">Public URL state</button>
+        <button role="tab" aria-selected="false" aria-controls="field-detail" id="gap-tab" data-field="gap">Explicit gap</button>
+      </div>
+    </section>
+
+    <section class="field-detail" id="field-detail" role="tabpanel" aria-labelledby="revision-tab" tabindex="-1">
+      <p class="eyebrow" id="detail-label">Field</p>
+      <h2 id="detail-title">Source revision</h2>
+      <p id="detail-definition">An immutable identifier for the exact source snapshot this record names. It identifies a snapshot; it does not report what happened after it was recorded.</p>
+      <p class="boundary" id="detail-boundary"></p>
+    </section>
+
+    <section class="records" aria-label="Contrasting provenance records">
+      <article class="record record-amber">
+        <header><p class="record-kicker">Recorded trace A</p><h2>Garden duel</h2><p>A record with four named observations.</p></header>
+        <dl id="record-a"></dl>
+      </article>
+      <article class="record record-blue">
+        <header><p class="record-kicker">Recorded trace B</p><h2>Paper weather vane</h2><p>A handoff that preserves several unknowns.</p></header>
+        <dl id="record-b"></dl>
+      </article>
+    </section>
+
+    <aside class="reading-note"><strong>First look:</strong> Say what each value records before deciding what you would check next. A blank or unknown value is itself part of the record; this card does not complete it.</aside>
+    <footer>Direct-file tool · no network needed · Durable Public Memory</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
