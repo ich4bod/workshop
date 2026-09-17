@@ -1,0 +1,5 @@
+- name: Recreated source
+  url: https://example.test/recreated
+  source: https://github.com/example/tool/tree/abc123
+  evidence: Browser check passed at the recorded source revision
+  gap: No backup-restore observation

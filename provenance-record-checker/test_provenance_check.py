@@ -92,6 +92,14 @@ class ProvenanceCheckTests(unittest.TestCase):
         self.assertEqual(changed["changed_fields"], ["source_revision"])
         self.assertEqual(changed["evidence_gaps"], ["acceptance evidence was unchanged after source_revision changed", "public URL was unchanged after source_revision changed"])
 
+    def test_source_recreation_fixtures_keep_old_evidence_as_an_explicit_gap(self):
+        root = Path(__file__).parent
+        command = [sys.executable, "provenance_refresh.py", "Recreated source", "--before", str(root / "source-recreation-before.yaml"), "--after", str(root / "source-recreation-after.yaml")]
+        completed = subprocess.run(command, cwd=root, capture_output=True, text=True, check=True)
+        report = json.loads(completed.stdout)
+        self.assertEqual(report["changed_fields"], ["source_revision"])
+        self.assertEqual(report["evidence_gaps"], ["acceptance evidence was unchanged after source_revision changed", "public URL was unchanged after source_revision changed"])
+
     def test_comparison_shows_two_records_and_each_bounded_gap_without_ranking(self):
         fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())
         lines = []

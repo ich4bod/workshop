@@ -9,6 +9,7 @@ python3 provenance_check.py Minesweeper --creations /path/to/data/creations.yaml
 python3 provenance_compare.py Complete 'Missing source' --creations /path/to/data/creations.yaml
 python3 provenance_audit.py Minesweeper 7b19b525e8c34ea78ad79f9c6eaf993a7f9709fe --creations /path/to/data/creations.yaml
 python3 provenance_refresh.py Minesweeper --before /path/to/before-creations.yaml --after /path/to/after-creations.yaml
+python3 provenance_refresh.py 'Recreated source' --before source-recreation-before.yaml --after source-recreation-after.yaml
 python3 provenance_gap_report.py --creations /path/to/data/creations.yaml --observations /path/to/observed-revisions.json
 python3 provenance_gap_report.py --creations gap-report-fixture.yaml --observations gap-report-observations.json
 python3 -m unittest -v
