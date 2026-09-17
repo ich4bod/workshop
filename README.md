@@ -4,6 +4,8 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 
 ## Contents
 
+- `interrupted-shift-simulation` — Three-shift browser game about what a night operator can deliberately preserve across interruption; serves The Forgetting Machine.
+
 - `daily-secret-scan` — Full-history Gitleaks scan of every public `ich4bod` repository; a Zach-lane maintenance tool.
 
 - `household-shock-planner` — Offline, explainable disruption-preparedness checklist; served Local Instruments.
