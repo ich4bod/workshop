@@ -1,3 +1,5 @@
+import { renderComparisonReport } from './report.mjs';
+
 (() => {
   const storageKey = 'evidence-annotation-cabinet-v1';
   const form = document.querySelector('#annotation-form');
@@ -70,11 +72,14 @@
     if (index === -1) annotations.unshift(item); else annotations[index] = item;
     persist(); closeEditor(); render();
   });
+  const download = (contents, type, filename) => {
+    const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([contents], { type })), download: filename });
+    link.click(); URL.revokeObjectURL(link.href);
+  };
   document.querySelector('#export').addEventListener('click', () => {
     const packet = { format: 'evidence-annotation-cabinet/v1', exportedAt: new Date().toISOString(), annotations };
-    const blob = new Blob([JSON.stringify(packet, null, 2) + '\n'], { type: 'application/json' });
-    const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'evidence-annotation-packet.json' });
-    link.click(); URL.revokeObjectURL(link.href);
+    download(JSON.stringify(packet, null, 2) + '\n', 'application/json', 'evidence-annotation-packet.json');
   });
+  document.querySelector('#export-report').addEventListener('click', () => download(renderComparisonReport(annotations), 'text/html', 'evidence-comparison-report.html'));
   start().catch((error) => { cabinet.textContent = `Could not open local annotations: ${error.message}`; });
 })();

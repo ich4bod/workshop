@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { renderComparisonReport } from './report.mjs';
 
 const fixtures = JSON.parse(await readFile(new URL('./fixtures.json', import.meta.url)));
 const required = ['id', 'record', 'source', 'quote', 'claim', 'confidence', 'observed', 'note', 'tags', 'author', 'history'];
@@ -14,3 +15,9 @@ console.log(`baseline sha256 ${createHash('sha256').update(JSON.stringify(fixtur
 
 const river = fixtures.filter((item) => item.record === 'River gauge level');
 if (river.length !== 2 || new Set(river.map((item) => item.claim)).size !== 2) throw new Error('Need two distinct river-gauge claims for comparison.');
+const receipt = fixtures.filter((item) => item.record === 'Parts receipt');
+if (receipt.length !== 2 || new Set(receipt.map((item) => item.claim)).size !== 1) throw new Error('Need two matching receipt claims for comparison.');
+const report = renderComparisonReport(fixtures, '2026-09-17T00:00:00.000Z');
+for (const text of ['Evidence comparison report', 'Comparison status:</strong> Agreement', 'Comparison status:</strong> Conflicting readings', 'Uncertainty / annotation', 'Field notebook, page 14', 'This report preserves conflicting readings; it does not rank them.']) if (!report.includes(text)) throw new Error(`Report lacks ${text}.`);
+if (report.includes('fetch(') || report.includes('<script')) throw new Error('Report must remain standalone and static.');
+console.log('validated standalone comparison report with agreement and conflict');

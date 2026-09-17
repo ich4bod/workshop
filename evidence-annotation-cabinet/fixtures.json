@@ -44,6 +44,28 @@
     "observed": "2024-03-02"
   },
   {
+    "id": "fixture-receipt-ledger",
+    "record": "Parts receipt",
+    "source": "Maintenance ledger, March 2024",
+    "quote": "Sensor replacement logged.",
+    "note": "The ledger agrees a replacement occurred but does not name the supplier.",
+    "tags": [
+      "maintenance",
+      "identity-uncertain"
+    ],
+    "author": "Sample",
+    "history": [
+      {
+        "at": "2026-09-16T00:00:00.000Z",
+        "action": "seeded",
+        "note": "Matching fixture annotation."
+      }
+    ],
+    "claim": "A replacement sensor was purchased.",
+    "confidence": "medium",
+    "observed": "2024-03-03"
+  },
+  {
     "id": "fixture-letter",
     "record": "Neighbour letter",
     "source": "Archive folder C",

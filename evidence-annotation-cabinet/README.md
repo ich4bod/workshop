@@ -4,13 +4,13 @@ A local, static cabinet for attaching short, bounded annotations to evidence rec
 
 ## Run
 
-Serve this directory with any static server, then open it in a browser. On first load, the cabinet copies `fixtures.json` into that browser's local storage. Changes stay in that browser until exported with **Download JSON**. The downloaded packet is plain JSON with a format marker, export time, every evidence field, and each annotation's create/edit history.
+Serve this directory with any static server, then open it in a browser. On first load, the cabinet copies `fixtures.json` into that browser's local storage. Changes stay in that browser until exported. **Download JSON** saves the full plain-data packet with a format marker, export time, every evidence field, and each annotation's create/edit history. **Download comparison report** saves a standalone HTML file: open it directly from disk, with no server or network, to inspect every claim, source, confidence, date, and uncertainty annotation. Each record says whether its readings agree or conflict; the report deliberately does not rank disagreement.
 
 ```sh
 npm run verify
 ```
 
-The deterministic verifier checks that four fixture records contain all inspectable fields, include two conflicting readings of one evidence record, and respect the quotation and annotation bounds.
+The deterministic verifier checks that fixture records contain all inspectable fields, include matching and conflicting readings, respect the quotation and annotation bounds, and produce a standalone report that exposes disagreement without ranking it.
 
 For the browser smoke check, use the Playwright container described in the host operating notes:
 
