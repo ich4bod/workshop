@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from provenance_audit import audit
 from provenance_check import read_creation, record_for
 from provenance_compare import render
 
@@ -40,6 +41,44 @@ class ProvenanceCheckTests(unittest.TestCase):
                 second = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
                 self.assertEqual(first.stdout, second.stdout)
                 self.assertEqual(json.loads(first.stdout)["missing_fields"], fixture["missing_fields"])
+
+    def test_audit_distinguishes_current_stale_and_missing_source_revisions(self):
+        current = audit(read_creation(self.path, "Traced"), "abc123")
+        stale = audit(read_creation(self.path, "Traced"), "def456")
+        missing = audit(read_creation(self.path, "Incomplete"), "def456")
+        self.assertEqual(current, {"creation": "Traced", "field": "source_revision", "recorded_revision": "abc123", "observed_revision": "abc123", "status": "current"})
+        self.assertEqual(stale["status"], "stale")
+        self.assertEqual(stale["creation"], "Traced")
+        self.assertEqual(stale["field"], "source_revision")
+        self.assertEqual(missing["status"], "missing")
+        self.assertIsNone(missing["recorded_revision"])
+
+    def test_audit_command_uses_distinct_exit_codes(self):
+        current = subprocess.run(
+            [sys.executable, "provenance_audit.py", "Traced", "abc123", "--creations", str(self.path)],
+            cwd=Path(__file__).parent,
+            capture_output=True,
+            text=True,
+        )
+        stale = subprocess.run(
+            [sys.executable, "provenance_audit.py", "Traced", "def456", "--creations", str(self.path)],
+            cwd=Path(__file__).parent,
+            capture_output=True,
+            text=True,
+        )
+        missing = subprocess.run(
+            [sys.executable, "provenance_audit.py", "Incomplete", "def456", "--creations", str(self.path)],
+            cwd=Path(__file__).parent,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(current.returncode, 0)
+        self.assertEqual(stale.returncode, 1)
+        self.assertEqual(missing.returncode, 1)
+        for result, status in [(current, "current"), (stale, "stale"), (missing, "missing")]:
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["status"], status)
+            self.assertEqual(payload["field"], "source_revision")
 
     def test_comparison_shows_two_records_and_each_bounded_gap_without_ranking(self):
         fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())
