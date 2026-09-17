@@ -27,5 +27,6 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `provenance-handoff-worksheet` — Browser-only worksheet for bounded revision, evidence, URL, and gap handoffs; served Durable Public Memory.
 - `provenance-refresh-desk` — Offline before/after desk for naming rechecks after a provenance refresh; served Durable Public Memory.
 - `uncertainty-packet-gallery` — Offline comparison gallery for three contrasting uncertainty packets without a verdict; served Local Instruments.
+- `uncertainty-handoff-recorder` — Offline reader-response recorder that exports retained observations, disagreements, missing context, and unresolved items without a verdict; served Local Instruments.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reader handoff recorder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Local Instruments · offline handoff recorder</p>
+      <h1>What a reader<br><em>actually carried away.</em></h1>
+      <p class="lede">A small record for a reader’s observations after an uncertainty-packet handoff. It preserves what they noticed, disputed, lacked, and left unresolved. It does not score the reader or settle the packet.</p>
+    </header>
+    <section class="boundary" aria-label="Recording boundary"><strong>Recording boundary</strong><span>Record the handoff, not the packet. This is a reader response; it is not advice, a verdict, or a replacement for source material.</span></section>
+    <form id="recorder">
+      <label>Packet or handoff being read <input id="packet" name="packet" maxlength="140" placeholder="e.g. Quiet sensor alert · file handoff" required></label>
+      <div class="two-up">
+        <label>Reader label <input id="reader" name="reader" maxlength="80" placeholder="Optional, e.g. first reader"></label>
+        <label>Read at <input id="readAt" name="readAt" type="datetime-local"></label>
+      </div>
+      <label>Retained observations <small>What did the reader notice or understand?</small><textarea id="observations" name="observations" rows="5" required placeholder="One observation per line"></textarea></label>
+      <label>Disagreements or tensions <small>What did not line up, or what did they question?</small><textarea id="disagreements" name="disagreements" rows="4" placeholder="One disagreement per line, or leave blank"></textarea></label>
+      <label>Missing context <small>What did the handoff not let them know?</small><textarea id="missingContext" name="missingContext" rows="4" placeholder="One missing context item per line, or leave blank"></textarea></label>
+      <label>Unresolved items <small>What remains to check after the reading?</small><textarea id="unresolved" name="unresolved" rows="4" placeholder="One unresolved item per line, or leave blank"></textarea></label>
+      <div class="actions"><button type="submit">Preview handoff</button><button id="export" type="button" disabled>Export record</button><label class="import">Reload record<input id="import" type="file" accept="application/json,.json"></label><button id="reset" type="button" class="quiet">Start over</button></div>
+    </form>
+    <section id="preview" aria-live="polite" aria-label="Handoff record"><p class="empty">Fill in the handoff above. Blank sections will remain explicit in the record.</p></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "format": "uncertainty-reader-handoff/v1",
+  "boundary": "Reader response only. It retains observations and gaps without a verdict, ranking, or recommendation.",
+  "packet": "Quiet sensor alert · file handoff",
+  "reader": "Clean-profile replay",
+  "readAt": null,
+  "observations": [
+    "The alert cleared after six minutes",
+    "Confidence belongs to observations"
+  ],
+  "disagreements": [
+    "No competing explanation is present"
+  ],
+  "missingContext": [
+    "No continuous temperature trace"
+  ],
+  "unresolved": [
+    "Compare door-open events with the next alert"
+  ]
+}
