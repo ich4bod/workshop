@@ -1,0 +1,3 @@
+const esc=value=>String(value).replace(/[&<>"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));
+const boundary=item=>item.status.replace(/^A packet /,'').replace(/^A sparse packet /,'');
+document.querySelector('#scenarios').innerHTML=window.UNCERTAINTY_PACKET_FIXTURES.map((item,index)=>`<article class="scenario"><p class="number">0${index+1} / ${esc(item.label)}</p><h2>${esc(item.question)}</h2><p class="boundary"><b>Evidence boundary</b>${esc(boundary(item))}</p><p class="gap"><b>Unresolved gap</b>${esc(item.gaps[0])}</p><a href="index.html#${encodeURIComponent(item.id)}">Open this packet <span>→</span></a></article>`).join('');

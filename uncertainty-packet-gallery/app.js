@@ -22,4 +22,6 @@ fixtures.forEach((item, index) => {
   button.type = 'button'; button.dataset.id = item.id; button.textContent = `${String(index + 1).padStart(2, '0')} ${item.label}`;
   button.addEventListener('click', () => render(item)); chooser.append(button);
 });
-render(fixtures[0]);
+function renderFromHash() { const id = decodeURIComponent(location.hash.slice(1)); render(fixtures.find(item => item.id === id) || fixtures[0]); }
+window.addEventListener('hashchange', renderFromHash);
+renderFromHash();
