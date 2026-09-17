@@ -25,5 +25,6 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `maintenance-tradeoff-card` — Static offline comparison card for patch, pin, replace, or defer choices without scoring a winner; served Local Instruments.
 - `provenance-record-checker` — Dependency-free reader for one creation’s source and acceptance record; served Durable Public Memory.
 - `provenance-handoff-worksheet` — Browser-only worksheet for bounded revision, evidence, URL, and gap handoffs; served Durable Public Memory.
+- `provenance-refresh-desk` — Offline before/after desk for naming rechecks after a provenance refresh; served Durable Public Memory.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).
