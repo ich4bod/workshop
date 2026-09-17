@@ -1,8 +1,17 @@
 {
-  "format": "document-search-trail/v1",
-  "exportedAt": "2026-09-17T15:37:48.477Z",
+  "format": "document-search-trail/v2",
+  "exportedAt": "2026-09-17T15:41:10.170Z",
   "boundary": "A selected passage is evidence, not an answer. Interpretations stay in contention.",
   "question": "What changed after Station B closed?",
+  "documents": [
+    {
+      "id": "reader-b6f564a4-b801-4805-9711-596f523f87a4",
+      "title": "reader-field-note.txt",
+      "text": "A reader copied this field note. Its author and date remain unverified.",
+      "note": "Reader-supplied; author and date are unknown",
+      "supplied": true
+    }
+  ],
   "paths": [
     {
       "name": "Search night shift logs",
@@ -17,9 +26,9 @@
   ],
   "passages": [
     {
-      "doc": "shift-log",
-      "text": "Station B closed after the inspector requested a second pressure reading.",
-      "note": "names the immediate recorded event"
+      "doc": "reader-b6f564a4-b801-4805-9711-596f523f87a4",
+      "text": "A reader copied this field note. Its author and date remain unverified.",
+      "note": "preserves the supplied text and its unknown author"
     },
     {
       "doc": "notice",
