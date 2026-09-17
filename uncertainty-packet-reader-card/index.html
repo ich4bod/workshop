@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field card: Harbor sensor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">FIELD CARD / 04</p><h1>Harbor sensor</h1><p class="lede">A reading was flagged near Pier 6. This card holds the parts that do not yet agree. It does not settle what happened.</p></header>
+    <section class="signal" aria-label="Current reading"><span>Current signal</span><strong>Elevated particulate reading at 06:40</strong><small>One instrument, one time window.</small></section>
+    <nav aria-label="What to inspect"><button class="tab active" data-panel="claims">01 Claims</button><button class="tab" data-panel="sources">02 Sources</button><button class="tab" data-panel="disagreement">03 Disagreement</button><button class="tab" data-panel="context">04 Missing context</button><button class="tab" data-panel="checks">05 Next checks</button></nav>
+    <section class="panel" id="claims"><p class="kicker">Claim ledger</p><h2>Two accounts of the same morning</h2><article><b>Sensor log</b><p>Particulate matter exceeded the usual morning baseline between 06:35 and 06:50.</p></article><article><b>Harbor operator</b><p>No vessel discharge was observed during the shift handover.</p></article></section>
+    <section class="panel" id="sources" hidden><p class="kicker">Source shelf</p><h2>Where each account comes from</h2><article><b>Automated sensor log</b><p>Exported at 07:10. Calibrated last recorded on 12 May.</p></article><article><b>Operator handover note</b><p>Written at 07:02 by the outgoing operator. It records observation, not a measurement.</p></article></section>
+    <section class="panel" id="disagreement" hidden><p class="kicker">Friction point</p><h2>The accounts do not directly explain each other</h2><article class="contrast"><b>Measured elevation</b><p>The sensor says something changed in the air.</p><b>Observed absence</b><p>The note says no discharge was seen. It cannot rule out other sources or an instrument fault.</p></article></section>
+    <section class="panel" id="context" hidden><p class="kicker">Blank margin</p><h2>Context still absent</h2><ul><li>Wind direction and speed for the reading window.</li><li>A same-day calibration check or known sensor maintenance history.</li><li>Nearby construction and road-traffic activity before 07:00.</li></ul></section>
+    <section class="panel" id="checks" hidden><p class="kicker">Possible next checks</p><h2>Questions that could reduce the gap</h2><ol><li>Compare Pier 6 with the upwind sensor for 06:35–06:50.</li><li>Ask maintenance for the sensor’s last calibration and fault log.</li><li>Retrieve the weather station record for that window.</li></ol></section>
+    <footer><button id="reset">Reset card</button><span id="status" role="status">Showing claims.</span><p>This is an inspection aid, not a conclusion or recommendation.</p></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
