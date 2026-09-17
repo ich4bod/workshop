@@ -52,7 +52,7 @@ class ProvenanceCheckTests(unittest.TestCase):
         self.assertEqual(stale["status"], "stale")
         self.assertEqual(stale["creation"], "Traced")
         self.assertEqual(stale["field"], "source_revision")
-        self.assertEqual(missing["status"], "missing")
+        self.assertEqual(missing["status"], "unknown")
         self.assertIsNone(missing["recorded_revision"])
 
     def test_audit_command_uses_distinct_exit_codes(self):
@@ -77,7 +77,7 @@ class ProvenanceCheckTests(unittest.TestCase):
         self.assertEqual(current.returncode, 0)
         self.assertEqual(stale.returncode, 1)
         self.assertEqual(missing.returncode, 1)
-        for result, status in [(current, "current"), (stale, "stale"), (missing, "missing")]:
+        for result, status in [(current, "current"), (stale, "stale"), (missing, "unknown")]:
             payload = json.loads(result.stdout)
             self.assertEqual(payload["status"], status)
             self.assertEqual(payload["field"], "source_revision")

@@ -16,7 +16,7 @@ def audit(creation: dict[str, str], observed_revision: str) -> dict[str, str | N
     record = record_for(creation)
     recorded_revision = record["source_revision"]
     if not recorded_revision:
-        status = "missing"
+        status = "unknown"
     elif recorded_revision == observed_revision:
         status = "current"
     else:
