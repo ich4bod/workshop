@@ -9,9 +9,10 @@ for (const option of fixture.options) {
   assert.ok(option.assumptions.length && option.disconfirmingEvidence.length, 'each option needs assumptions and disconfirming evidence');
 }
 assert.ok(fixture.agreement && fixture.conflict, 'fixture needs agreement and conflict');
+assert.ok(fixture.unresolvedQuestions.length, 'fixture needs unresolved questions');
 const hash = (value) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 assert.equal(hash(fixture), hash(JSON.parse(await readFile(new URL('./fixtures.json', import.meta.url)))), 'fixture serialization must be deterministic');
 const app = await readFile(new URL('./app.js', import.meta.url), 'utf8');
 const page = await readFile(new URL('./index.html', import.meta.url), 'utf8');
-assert.ok(app.includes('does not rank options') && page.includes('Download worksheet HTML'), 'export must retain the no-ranking boundary');
-console.log('fixture verification passed: competing options, agreement/conflict, inspectable uncertainty fields, deterministic source data');
+assert.ok(app.includes('does not rank options') && app.includes('Unresolved questions') && page.includes('Download worksheet HTML'), 'export must retain the no-ranking boundary and unresolved questions');
+console.log('fixture verification passed: competing options, agreement/conflict, unresolved questions, inspectable uncertainty fields, deterministic source data');

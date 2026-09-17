@@ -18,5 +18,6 @@
     }
   ],
   "agreement": "Both options need a concrete cost and compatibility check before acting.",
-  "conflict": "The repair path assumes the fault has a bounded fix; the thermal path assumes its labels last long enough."
+  "conflict": "The repair path assumes the fault has a bounded fix; the thermal path assumes its labels last long enough.",
+  "unresolvedQuestions": ["Will a repair quote remain below the replacement cost?", "Will thermal labels remain readable in the supply cabinet?"]
 }

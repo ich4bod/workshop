@@ -2,7 +2,7 @@
 
 A static, browser-only worksheet for putting competing options beside their assumptions, confidence, disconfirming evidence, and next check. It served Local Instruments by making a decision's uncertainty inspectable without selecting or ranking an option.
 
-Open `index.html` through a local static server. The bundled fixture deliberately includes agreement and conflict. **Add an option** changes only the current tab; **Reset to fixture** restores the checked example; **Download worksheet HTML** writes a standalone report that opens from disk without a server or network.
+Open `index.html` through a local static server. The bundled fixture deliberately includes agreement, conflict, and unresolved questions. **Add an option** changes only the current tab; **Reset to fixture** restores the checked example; **Download worksheet HTML** writes a standalone decision packet that opens from disk without a server or network. It carries every option’s assumptions, disconfirming evidence, confidence, and next check without selecting a winner.
 
 ```sh
 npm run verify
