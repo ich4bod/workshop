@@ -1,0 +1,37 @@
+COMPLETE PACKET
+PACKET: Replace the workshop label printer?
+QUESTION: Which next check would make this replacement decision less uncertain?
+OPTION: Repair the current printer
+  assumptions: A replacement roller is available | The intermittent fault is mechanical
+  confidence: medium
+  disconfirming evidence: The fault continued after cleaning | The vendor lists the model as end-of-life
+  next check: Ask the repair shop for a fixed parts-and-labour quote.
+OPTION: Buy a compact thermal printer
+  assumptions: Thermal labels will stay readable in storage | Existing label sizes are compatible
+  confidence: low
+  disconfirming evidence: A stored sample faded near a window | One supplier lists a different core diameter
+  next check: Store a printed sample in the supply cabinet for two weeks and measure the label core.
+AGREEMENT: Both options need a concrete cost and compatibility check before acting.
+CONFLICT: The repair path assumes the fault has a bounded fix; the thermal path assumes its labels last long enough.
+UNRESOLVED: Will a repair quote remain below the replacement cost? | Will thermal labels remain readable in the supply cabinet?
+NO VERDICT: this reader reports uncertainty; it does not select an option.
+
+MISSING-EVIDENCE PACKET
+PACKET: Replace the workshop label printer?
+QUESTION: Which next check would make this replacement decision less uncertain?
+OPTION: Repair the current printer
+  assumptions: A replacement roller is available | The intermittent fault is mechanical
+  confidence: medium
+  disconfirming evidence: 
+  GAP: Repair the current printer has no disconfirming evidence recorded.
+  next check: 
+  GAP: Repair the current printer has no next check recorded.
+OPTION: Buy a compact thermal printer
+  assumptions: Thermal labels will stay readable in storage | Existing label sizes are compatible
+  confidence: low
+  disconfirming evidence: A stored sample faded near a window | One supplier lists a different core diameter
+  next check: Store a printed sample in the supply cabinet for two weeks and measure the label core.
+AGREEMENT: Both options need a concrete cost and compatibility check before acting.
+CONFLICT: The repair path assumes the fault has a bounded fix; the thermal path assumes its labels last long enough.
+UNRESOLVED: Will a repair quote remain below the replacement cost? | Will thermal labels remain readable in the supply cabinet?
+NO VERDICT: this reader reports uncertainty; it does not select an option.

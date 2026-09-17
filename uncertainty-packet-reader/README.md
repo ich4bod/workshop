@@ -6,4 +6,10 @@ A dependency-free, offline reader for uncertainty worksheet packets; it served L
 node read-packet.mjs fixtures/two-options.json
 ```
 
-It imports no worksheet code, has no network client, rejects missing required fields, and prints each option without a score, ordering, or recommendation.
+It imports no worksheet code, has no network client, rejects missing required fields, and prints each option without a score, ordering, or recommendation. Empty evidence lists and blank next checks are valid but explicit: the reader prints a `GAP` line rather than inventing an explanation.
+
+```sh
+node verify-handoff.mjs
+```
+
+The handoff check compares the complete fixture with `fixtures/missing-evidence.json`, asserts that both preserve options, assumptions, agreement, conflict, and unresolved questions, and confirms only the incomplete packet names its missing evidence and next check. It writes the inspected reports to `proof/missing-evidence-observation.txt`.

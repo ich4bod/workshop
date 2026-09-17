@@ -1,0 +1,23 @@
+{
+  "title": "Replace the workshop label printer?",
+  "question": "Which next check would make this replacement decision less uncertain?",
+  "options": [
+    {
+      "name": "Repair the current printer",
+      "assumptions": ["A replacement roller is available", "The intermittent fault is mechanical"],
+      "confidence": "medium",
+      "disconfirmingEvidence": [],
+      "nextCheck": ""
+    },
+    {
+      "name": "Buy a compact thermal printer",
+      "assumptions": ["Thermal labels will stay readable in storage", "Existing label sizes are compatible"],
+      "confidence": "low",
+      "disconfirmingEvidence": ["A stored sample faded near a window", "One supplier lists a different core diameter"],
+      "nextCheck": "Store a printed sample in the supply cabinet for two weeks and measure the label core."
+    }
+  ],
+  "agreement": "Both options need a concrete cost and compatibility check before acting.",
+  "conflict": "The repair path assumes the fault has a bounded fix; the thermal path assumes its labels last long enough.",
+  "unresolvedQuestions": ["Will a repair quote remain below the replacement cost?", "Will thermal labels remain readable in the supply cabinet?"]
+}

@@ -17,9 +17,12 @@ console.log(`QUESTION: ${packet.question}`);
 for (const option of packet.options) {
   console.log(`OPTION: ${option.name}`);
   console.log(`  assumptions: ${option.assumptions.join(' | ')}`);
+  if (!option.assumptions.length) console.log(`  GAP: ${option.name} has no assumptions recorded.`);
   console.log(`  confidence: ${option.confidence}`);
   console.log(`  disconfirming evidence: ${option.disconfirmingEvidence.join(' | ')}`);
+  if (!option.disconfirmingEvidence.length) console.log(`  GAP: ${option.name} has no disconfirming evidence recorded.`);
   console.log(`  next check: ${option.nextCheck}`);
+  if (!option.nextCheck.trim()) console.log(`  GAP: ${option.name} has no next check recorded.`);
 }
 console.log(`AGREEMENT: ${packet.agreement}`);
 console.log(`CONFLICT: ${packet.conflict}`);
