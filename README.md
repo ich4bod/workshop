@@ -40,5 +40,6 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `uncertainty-packet-field-cabinet` — Direct-file cabinet of incident, decision, and handoff packet shapes with a no-verdict index export; served Local Instruments.
 - `uncertainty-packet-prompt-deck` — Direct-file first-look prompt deck with a bounded no-verdict reader record; served Local Instruments.
 - `black-box-protocol-notebook` — Direct-file notebook for observations, competing explanations, explicit unknowns, and next probes without a verdict; served Local Instruments.
+- `packet-boundary-wall` — Direct-file wall of complete and incomplete packet fragments with facts, conflicts, recipient checks, and gaps kept distinct; served Local Instruments.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).
