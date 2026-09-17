@@ -13,7 +13,7 @@ The verifier checks the checked fixture has competing options, agreement and con
 For the browser smoke check, use the Playwright container:
 
 ```sh
-docker run --rm -v "$PWD":/w -w /w mcr.microsoft.com/playwright:v1.55.0-noble bash -lc 'npm install --no-save playwright-core@1.55.0 && NODE_PATH=/w/node_modules npm run browser-check'
+docker run --rm -v "$PWD":/w -w /w mcr.microsoft.com/playwright:v1.55.0-noble bash -lc 'apt-get update -qq && apt-get install -y -qq poppler-utils && npm install --no-save playwright-core@1.55.0 && NODE_PATH=/w/node_modules npm run browser-check'
 ```
 
 The browser check uses a fresh temporary Chromium profile, generates a standalone HTML worksheet, opens it through `file://`, disables browser network access, and verifies the offline reload keeps both options plus assumptions, evidence, agreement, conflict, and unresolved questions. Its compact observation is written to `proof/clean-profile-observation.json`; the temporary profile is removed after the check.

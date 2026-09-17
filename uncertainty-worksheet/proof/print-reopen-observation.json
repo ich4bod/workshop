@@ -1,0 +1,16 @@
+{
+  "packet": "standalone fixture packet printed by Chromium",
+  "pages": 2,
+  "extractedSections": [
+    "Repair the current printer",
+    "Borrow a printer",
+    "Assumptions:",
+    "Disconfirming evidence:",
+    "Agreement:",
+    "Conflict:",
+    "Unresolved questions:",
+    "does not rank options"
+  ],
+  "sizeBytes": 8201,
+  "result": "passed; local PDF text preserves the packet structure"
+}

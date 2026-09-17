@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { execFileSync } = require('child_process');
 const http = require('http');
 const os = require('os');
 const path = require('path');
@@ -6,6 +7,8 @@ const { chromium } = require('playwright-core');
 
 const site = __dirname;
 const proofPath = path.join(site, 'proof', 'clean-profile-observation.json');
+const pdfPath = path.join(site, 'proof', 'uncertainty-packet.pdf');
+const pdfObservationPath = path.join(site, 'proof', 'print-reopen-observation.json');
 const server = http.createServer((request, response) => {
   const file = request.url === '/' ? 'index.html' : request.url.split('?')[0].slice(1);
   const target = path.resolve(site, file);
@@ -30,7 +33,9 @@ server.listen(8766, '127.0.0.1', async () => {
     await added.locator('.evidence').fill('The neighbour travels often');
     await added.locator('.next-check').fill('Ask before Tuesday');
     const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Download worksheet HTML' }).click()]);
-    const packetPath = await download.path();
+    const downloadedPath = await download.path();
+    const packetPath = path.join(profile, 'uncertainty-decision-packet.html');
+    await fs.promises.copyFile(downloadedPath, packetPath);
     const report = await fs.promises.readFile(packetPath, 'utf8');
     if (!report.includes('Borrow a printer') || !report.includes('Unresolved questions') || !report.includes('does not rank options')) throw new Error('standalone packet omitted an uncertainty field or no-ranking boundary');
     const packet = await context.newPage();
@@ -45,6 +50,15 @@ server.listen(8766, '127.0.0.1', async () => {
     const missingAfterReload = requiredSections.filter((section) => !offlineText.includes(section));
     if (missingAfterReload.length) throw new Error(`offline file reload omitted: ${missingAfterReload.join(', ')}`);
     await fs.promises.mkdir(path.dirname(proofPath), { recursive: true });
+    await packet.pdf({ path: pdfPath, format: 'A4', printBackground: true });
+    const pdfText = execFileSync('pdftotext', [pdfPath, '-'], { encoding: 'utf8' });
+    const missingFromPdf = requiredSections.filter((section) => !pdfText.includes(section));
+    if (missingFromPdf.length) throw new Error(`printed packet omitted: ${missingFromPdf.join(', ')}`);
+    const pdfSize = (await fs.promises.stat(pdfPath)).size;
+    if (pdfSize > 5 * 1024 * 1024) throw new Error(`printed packet exceeds 5 MB: ${pdfSize} bytes`);
+    const pages = Number(execFileSync('pdfinfo', [pdfPath], { encoding: 'utf8' }).match(/^Pages:\s+(\d+)$/m)?.[1]);
+    if (!Number.isInteger(pages) || pages < 1) throw new Error('printed packet has no readable page count');
+    await fs.promises.writeFile(pdfObservationPath, `${JSON.stringify({ packet: 'standalone fixture packet printed by Chromium', pages, extractedSections: requiredSections, sizeBytes: pdfSize, result: 'passed; local PDF text preserves the packet structure' }, null, 2)}\n`);
     await fs.promises.writeFile(proofPath, `${JSON.stringify({ profile: 'fresh temporary Chromium user-data directory', packet: 'downloaded fixture with an added option', requiredSections, offlineReload: 'passed; context network disabled before file:// reload' }, null, 2)}\n`);
     await packet.close();
     await context.setOffline(false);
