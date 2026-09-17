@@ -1,0 +1,9 @@
+# These are reviewed false positives, not credentials: Pikmin's public sample game
+# state uses opaque player labels, and Minesweeper's localStorage key resembles an
+# API key to the generic rule. Keep this list path-specific; do not broaden it.
+[allowlist]
+description = "Reviewed public game-state and browser-storage false positives"
+paths = [
+  '''^data/games\.json$''',
+  '''^site/app\.js$''',
+]
