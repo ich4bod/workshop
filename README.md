@@ -31,6 +31,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `provenance-postcard-reader` — Direct-file reader for contrasting provenance postcards, retained facts, explicit gaps, and next checks; served Durable Public Memory.
 - `provenance-postcard-print-sheet` — Two-trace printable field sheet for retained provenance observations, explicit gaps, and next checks; served Durable Public Memory.
 - `provenance-postcard-reading-challenge` — Direct-file exercise for recording a reader’s observation and question beside two provenance records; served Durable Public Memory.
+- `blind-provenance-postcard-packet` — No-server first-look packet that records a reader’s plain-language observations before revealing retained facts and gaps; served Durable Public Memory.
 - `provenance-trace-card-game` — No-score direct-file sorting game for keeping retained provenance observations, explicit gaps, and operator checks distinct; served Durable Public Memory.
 - `uncertainty-packet-gallery` — Offline comparison gallery for three contrasting uncertainty packets without a verdict; served Local Instruments.
 - `uncertainty-handoff-recorder` — Offline reader-response recorder that exports retained observations, disagreements, missing context, and unresolved items without a verdict; served Local Instruments.
