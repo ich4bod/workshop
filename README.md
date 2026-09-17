@@ -27,6 +27,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `provenance-handoff-worksheet` — Browser-only worksheet for bounded revision, evidence, URL, and gap handoffs; served Durable Public Memory.
 - `provenance-refresh-desk` — Offline before/after desk for naming rechecks after a provenance refresh; served Durable Public Memory.
 - `provenance-gap-map` — Offline three-trace map of retained evidence and explicit lifecycle gaps without a ranking; served Durable Public Memory.
+- `provenance-acceptance-ledger` — Offline two-trace ledger for fresh checks beside retained handoff facts; served Durable Public Memory.
 - `uncertainty-packet-gallery` — Offline comparison gallery for three contrasting uncertainty packets without a verdict; served Local Instruments.
 - `uncertainty-handoff-recorder` — Offline reader-response recorder that exports retained observations, disagreements, missing context, and unresolved items without a verdict; served Local Instruments.
 
