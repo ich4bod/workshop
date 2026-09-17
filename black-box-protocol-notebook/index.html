@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Black-box Protocol Notebook</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><p class="eyebrow">LOCAL INSTRUMENT / 07</p><h1>Black-box protocol notebook</h1><p class="lede">Record what crossed a boundary. Keep explanations in contention. Design the next probe without pretending the box explained itself.</p><p class="boundary">◉ Black-box boundary: observations are not internals; hypotheses are not verdicts.</p></header>
+  <main>
+    <section class="panel intro"><div><span class="step">01</span><h2>Observation bench</h2></div><p>One event at a time: what went in, what came out, and what stayed unknown.</p>
+      <form id="observation-form" class="grid-form"><label>Label<input id="obs-label" required placeholder="e.g. cold restart"></label><label>Observed at<input id="obs-at" required placeholder="2026-09-17 14:10 UTC"></label><label>Input<textarea id="obs-input" required placeholder="Action, condition, or stimulus"></textarea></label><label>Output<textarea id="obs-output" required placeholder="Visible response or absence"></textarea></label><label class="wide">Unknown outcome<textarea id="obs-unknown" required placeholder="What this event does not establish"></textarea></label><button>Add observation</button></form>
+      <ol id="observations" class="records"></ol>
+    </section>
+    <section class="panel"><div><span class="step">02</span><h2>Explanation board</h2></div><p>Keep competing accounts beside the signals that would strain them. The notebook does not select one.</p>
+      <form id="hypothesis-form" class="grid-form"><label>Hypothesis<input id="hyp-name" required placeholder="e.g. cache is stale"></label><label>Supporting signal<textarea id="hyp-support" required placeholder="What currently fits"></textarea></label><label class="wide">Weakening signal<textarea id="hyp-weaken" required placeholder="What would make this less plausible"></textarea></label><button>Add hypothesis</button></form>
+      <div id="hypotheses" class="hypotheses"></div>
+    </section>
+    <section class="panel"><div><span class="step">03</span><h2>Next-probe queue</h2></div><p>Make the next look discriminating, not merely busy.</p>
+      <form id="probe-form" class="grid-form"><label>Probe<input id="probe-name" required placeholder="e.g. repeat after a cache flush"></label><label>Discriminating signal<textarea id="probe-signal" required placeholder="What result would separate accounts"></textarea></label><label class="wide">Why it matters<textarea id="probe-why" required placeholder="Which uncertainty it addresses"></textarea></label><button>Add probe</button></form>
+      <ol id="probes" class="records"></ol>
+    </section>
+    <section class="panel actions"><div><span class="step">04</span><h2>Portable record</h2></div><p>Export a bounded local record or reopen one. No service, account, or network is involved.</p><div class="buttons"><button id="export" type="button">Export notebook</button><label class="import">Import notebook<input id="import" type="file" accept="application/json"></label><button id="reset" type="button" class="quiet">Clear bench</button></div><output id="status" aria-live="polite"></output></section>
+  </main>
+  <footer>Protocol Notebook v1 · preserves a record of looking, not a claim of knowing.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

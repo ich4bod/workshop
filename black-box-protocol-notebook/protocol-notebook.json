@@ -1,0 +1,40 @@
+{
+  "format": "black-box-protocol-notebook/v1",
+  "exportedAt": "2026-09-17T13:37:32.751Z",
+  "boundary": "Observations are not internals; hypotheses are not verdicts.",
+  "observations": [
+    {
+      "label": "cold restart",
+      "at": "2026-09-17 14:10 UTC",
+      "input": "power cycle after 5 minutes",
+      "output": "indicator stayed amber",
+      "unknown": "whether the service was ready"
+    },
+    {
+      "label": "warm retry",
+      "at": "2026-09-17 14:16 UTC",
+      "input": "submit the same request",
+      "output": "indicator turned green",
+      "unknown": "which condition changed"
+    }
+  ],
+  "hypotheses": [
+    {
+      "name": "stale cache",
+      "support": "warm retry changed the visible indicator",
+      "weaken": "a clean restart repeats the amber state"
+    },
+    {
+      "name": "delayed upstream handshake",
+      "support": "time also changed between trials",
+      "weaken": "a fast retry after a flush succeeds"
+    }
+  ],
+  "probes": [
+    {
+      "name": "retry after cache flush",
+      "signal": "green immediately would separate cache from delay",
+      "why": "it tests both accounts without opening the box"
+    }
+  ]
+}

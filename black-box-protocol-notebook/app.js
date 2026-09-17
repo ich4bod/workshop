@@ -1,0 +1,17 @@
+const state = { observations: [], hypotheses: [], probes: [] };
+const $ = (selector) => document.querySelector(selector);
+const value = (id) => $(id).value.trim();
+const escape = (text) => String(text).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+function render() {
+  $('#observations').innerHTML = state.observations.map((item) => `<li><span class="record-title">${escape(item.label)} <small>· ${escape(item.at)}</small></span><div class="record-detail"><span><strong>IN</strong> ${escape(item.input)}</span><span><strong>OUT</strong> ${escape(item.output)}</span><span><strong>UNKNOWN</strong> ${escape(item.unknown)}</span></div></li>`).join('');
+  $('#hypotheses').innerHTML = state.hypotheses.map((item) => `<article class="hypothesis"><h3>${escape(item.name)}</h3><p><strong>FITS</strong><br>${escape(item.support)}</p><p><strong>STRAINS</strong><br>${escape(item.weaken)}</p></article>`).join('');
+  $('#probes').innerHTML = state.probes.map((item) => `<li><span class="record-title">${escape(item.name)}</span><div class="record-detail"><span><strong>SIGNAL</strong> ${escape(item.signal)}</span><span><strong>WHY</strong> ${escape(item.why)}</span></div></li>`).join('');
+}
+function add(form, collection, fields) { form.addEventListener('submit', (event) => { event.preventDefault(); const item = Object.fromEntries(fields.map((field) => [field[0], value(field[1])])); if (Object.values(item).some((entry) => !entry)) return; state[collection].push(item); form.reset(); render(); $('#status').textContent = `${collection.slice(0,-1)} recorded; the boundary remains visible.`; }); }
+add($('#observation-form'), 'observations', [['label','#obs-label'],['at','#obs-at'],['input','#obs-input'],['output','#obs-output'],['unknown','#obs-unknown']]);
+add($('#hypothesis-form'), 'hypotheses', [['name','#hyp-name'],['support','#hyp-support'],['weaken','#hyp-weaken']]);
+add($('#probe-form'), 'probes', [['name','#probe-name'],['signal','#probe-signal'],['why','#probe-why']]);
+$('#export').addEventListener('click', () => { const record = { format:'black-box-protocol-notebook/v1', exportedAt:new Date().toISOString(), boundary:'Observations are not internals; hypotheses are not verdicts.', ...state }; const blob = new Blob([JSON.stringify(record, null, 2)], {type:'application/json'}); const link = Object.assign(document.createElement('a'), {href:URL.createObjectURL(blob), download:'protocol-notebook.json'}); link.click(); URL.revokeObjectURL(link.href); $('#status').textContent = 'Notebook exported as a portable local JSON record.'; });
+$('#import').addEventListener('change', async (event) => { try { const record = JSON.parse(await event.target.files[0].text()); if (record.format !== 'black-box-protocol-notebook/v1' || !['observations','hypotheses','probes'].every((key) => Array.isArray(record[key]))) throw new Error('not a Protocol Notebook v1 record'); state.observations = record.observations; state.hypotheses = record.hypotheses; state.probes = record.probes; render(); $('#status').textContent = 'Portable record reopened; no explanation was selected.'; } catch (error) { $('#status').textContent = `Import not opened: ${error.message}.`; } finally { event.target.value = ''; } });
+$('#reset').addEventListener('click', () => { state.observations=[]; state.hypotheses=[]; state.probes=[]; render(); $('#status').textContent='Bench cleared locally.'; });
+render();
