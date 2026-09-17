@@ -18,9 +18,10 @@ server.listen(8765, '127.0.0.1', async () => {
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     const response = await page.goto('http://127.0.0.1:8765/', { waitUntil: 'networkidle' });
-    if (response.status() !== 200 || await page.locator('#cabinet article').count() !== 3) throw new Error('Fixture annotations did not load.');
+    if (response.status() !== 200 || await page.locator('#cabinet article').count() !== 4) throw new Error('Fixture annotations did not load.');
+    if (!(await page.locator('#comparison').textContent()).includes('Compare: River gauge level') || await page.locator('#comparison td').count() !== 8) throw new Error('Conflicting fixture comparison did not render all fields.');
     await page.getByRole('button', { name: 'New annotation' }).click();
-    await page.locator('#record').fill('Pump log'); await page.locator('#source').fill('Log book 7'); await page.locator('#quote').fill('Pressure fell at 09:10.'); await page.locator('#note').fill('A concise operational note.'); await page.locator('#tags').fill('pump, urgent'); await page.getByRole('button', { name: 'Save annotation' }).click();
+    await page.locator('#record').fill('Pump log'); await page.locator('#source').fill('Log book 7'); await page.locator('#quote').fill('Pressure fell at 09:10.'); await page.locator('#claim').fill('Pump pressure fell.'); await page.locator('#confidence').selectOption('high'); await page.locator('#observed').fill('2026-09-16'); await page.locator('#note').fill('A concise operational note.'); await page.locator('#tags').fill('pump, urgent'); await page.getByRole('button', { name: 'Save annotation' }).click();
     await page.getByRole('button', { name: 'Edit' }).first().click(); await page.locator('#note').fill('Edited operational note.'); await page.getByRole('button', { name: 'Save annotation' }).click();
     await page.locator('#filter').fill('urgent');
     if (await page.locator('#cabinet article').count() !== 1 || !(await page.locator('#cabinet').textContent()).includes('Edited operational note.')) throw new Error('Filter or edit failed.');

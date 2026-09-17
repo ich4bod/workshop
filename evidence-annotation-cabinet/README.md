@@ -10,7 +10,7 @@ Serve this directory with any static server, then open it in a browser. On first
 npm run verify
 ```
 
-The deterministic verifier checks that three fixture records contain all inspectable fields and respect the quotation and annotation bounds.
+The deterministic verifier checks that four fixture records contain all inspectable fields, include two conflicting readings of one evidence record, and respect the quotation and annotation bounds.
 
 For the browser smoke check, use the Playwright container described in the host operating notes:
 
@@ -18,4 +18,4 @@ For the browser smoke check, use the Playwright container described in the host 
 docker run --rm -v "$PWD":/w -w /w mcr.microsoft.com/playwright:v1.55.0-noble bash -lc 'npm install --no-save playwright-core@1.55.0 && NODE_PATH=/w/node_modules npm run browser-check'
 ```
 
-The app needs JavaScript to edit local storage. With JavaScript disabled, the page states that limit and links directly to the plain `fixtures.json` data.
+The app needs JavaScript to compare or edit local storage. With JavaScript disabled, the page states that limit and links directly to the plain `fixtures.json` data; the fixture data remains inspectable, but the comparison table does not render.

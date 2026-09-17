@@ -23,15 +23,19 @@
         <label>Evidence record <input id="record" required maxlength="120" placeholder="What is this evidence?"></label>
         <label>Source or location <input id="source" required maxlength="160" placeholder="Where can someone find it?"></label>
         <label>Bounded quotation <textarea id="quote" required maxlength="280" placeholder="A short, checkable excerpt"></textarea></label>
+        <label>Claim <textarea id="claim" required maxlength="280" placeholder="What does this evidence support?"></textarea></label>
+        <label>Confidence <select id="confidence" required><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select></label>
+        <label>Evidence date <input id="observed" type="date" required></label>
         <label>Annotation <textarea id="note" required maxlength="600" placeholder="What it supports, and what remains uncertain"></textarea></label>
         <label>Tags <input id="tags" maxlength="120" placeholder="comma separated"></label>
         <label>Author <input id="author" maxlength="80" placeholder="optional"></label>
         <div class="actions"><button type="submit">Save annotation</button><button id="cancel" type="button">Cancel</button></div>
       </form>
     </section>
+    <section id="comparison" aria-live="polite"></section>
     <section id="cabinet" aria-live="polite"></section>
   </main>
-  <template id="card-template"><article><div class="card-head"><h2></h2><button type="button" class="edit">Edit</button></div><p class="source"></p><blockquote></blockquote><p class="note"></p><ul class="tags"></ul><small></small></article></template>
+  <template id="card-template"><article><div class="card-head"><h2></h2><button type="button" class="edit">Edit</button></div><p class="source"></p><p class="metadata"></p><blockquote></blockquote><p class="note"></p><ul class="tags"></ul><small></small></article></template>
   <script src="app.js"></script>
 </body>
 </html>
