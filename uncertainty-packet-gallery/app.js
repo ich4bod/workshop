@@ -16,7 +16,7 @@ function render(item) {
     <section class="lower"><article><p class="kicker">Unresolved next checks</p><ol>${item.nextChecks.map(value => `<li>${escape(value)}</li>`).join('')}</ol></article><article class="gaps"><p class="kicker">Explicit gaps</p><ul>${item.gaps.map(value => `<li>${escape(value)}</li>`).join('')}</ul></article></section>`;
 }
 
-fixtures = await fetch('fixtures.json').then(response => response.json());
+fixtures = window.UNCERTAINTY_PACKET_FIXTURES;
 fixtures.forEach((item, index) => {
   const button = document.createElement('button');
   button.type = 'button'; button.dataset.id = item.id; button.textContent = `${String(index + 1).padStart(2, '0')} ${item.label}`;
