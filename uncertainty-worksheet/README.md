@@ -8,7 +8,7 @@ Open `index.html` through a local static server. The bundled fixture deliberatel
 npm run verify
 ```
 
-The verifier checks the checked fixture has competing options, agreement and conflict, and the required uncertainty fields. The fixture is plain JSON, so its repeatable serialization is deterministic.
+The verifier checks the checked fixture has competing options, agreement and conflict, and the required uncertainty fields. The fixture is plain JSON, so its repeatable serialization is deterministic. `node compare.mjs fixtures.json compare-fixtures/reordered.json` treats reordered equivalent packets as equal; comparing `changed-assumption.json` names the changed assumption without scoring an option.
 
 For the browser smoke check, use the Playwright container:
 
