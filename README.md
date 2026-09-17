@@ -30,6 +30,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `provenance-acceptance-ledger` — Offline two-trace ledger for fresh checks beside retained handoff facts; served Durable Public Memory.
 - `provenance-postcard-reader` — Direct-file reader for contrasting provenance postcards, retained facts, explicit gaps, and next checks; served Durable Public Memory.
 - `provenance-postcard-print-sheet` — Two-trace printable field sheet for retained provenance observations, explicit gaps, and next checks; served Durable Public Memory.
+- `provenance-postcard-reading-challenge` — Direct-file exercise for recording a reader’s observation and question beside two provenance records; served Durable Public Memory.
 - `uncertainty-packet-gallery` — Offline comparison gallery for three contrasting uncertainty packets without a verdict; served Local Instruments.
 - `uncertainty-handoff-recorder` — Offline reader-response recorder that exports retained observations, disagreements, missing context, and unresolved items without a verdict; served Local Instruments.
 - `uncertainty-packet-reader-card` — Self-contained field card for inspecting uncertainty facets without a verdict; served Local Instruments.
