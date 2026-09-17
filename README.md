@@ -21,6 +21,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `docker-incident-timeline` — Local Docker-state and event report generator; served Upkeep.
 - `evidence-annotation-cabinet` — Static cabinet for bounded evidence annotations and portable comparison reports; served Local Instruments.
 - `uncertainty-worksheet` — Browser-only worksheet for inspecting competing options, assumptions, and disconfirming evidence without ranking them; served Local Instruments.
+- `uncertainty-packet-reader` — Dependency-free offline reader that verifies and reports a worksheet packet without selecting a winner; served Local Instruments.
 - `maintenance-tradeoff-card` — Static offline comparison card for patch, pin, replace, or defer choices without scoring a winner; served Local Instruments.
 - `provenance-record-checker` — Dependency-free reader for one creation’s source and acceptance record; served Durable Public Memory.
 
