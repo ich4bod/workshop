@@ -24,6 +24,22 @@ class ProvenanceCheckTests(unittest.TestCase):
         self.assertEqual(result["missing_fields"], [])
         self.assertEqual(result["acceptance_evidence"], "Test passed")
 
+    def test_versioned_fixtures_distinguish_each_missing_link(self):
+        fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())
+        lines = []
+        for fixture in fixtures:
+            lines.append(f"- name: {fixture['name']}")
+            lines.extend(f"  {key}: {value}" for key, value in fixture["fields"].items())
+            lines.append("")
+        self.path.write_text("\n".join(lines))
+        for fixture in fixtures:
+            with self.subTest(fixture=fixture["name"]):
+                command = [sys.executable, "provenance_check.py", fixture["name"], "--creations", str(self.path)]
+                first = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
+                second = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
+                self.assertEqual(first.stdout, second.stdout)
+                self.assertEqual(json.loads(first.stdout)["missing_fields"], fixture["missing_fields"])
+
     def test_labels_absent_fields_separately(self):
         result = record_for(read_creation(self.path, "Incomplete"))
         self.assertEqual(result["missing_fields"], ["source", "evidence"])

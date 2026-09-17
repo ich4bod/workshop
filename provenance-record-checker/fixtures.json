@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Complete",
+    "fields": {
+      "url": "https://complete.example.test",
+      "source": "https://github.com/example/tool/tree/abc123",
+      "evidence": "Focused test passed",
+      "gap": "No browser observation"
+    },
+    "missing_fields": []
+  },
+  {
+    "name": "Missing source",
+    "fields": {
+      "url": "https://source-gap.example.test",
+      "evidence": "Focused test passed",
+      "gap": "Source revision was not captured"
+    },
+    "missing_fields": ["source"]
+  },
+  {
+    "name": "Missing acceptance",
+    "fields": {
+      "url": "https://evidence-gap.example.test",
+      "source": "https://github.com/example/tool/tree/def456",
+      "gap": "Acceptance observation was not captured"
+    },
+    "missing_fields": ["evidence"]
+  },
+  {
+    "name": "Missing public entry",
+    "fields": {
+      "source": "https://github.com/example/tool/tree/987fed",
+      "evidence": "Focused test passed",
+      "gap": "Public URL was not captured"
+    },
+    "missing_fields": ["url"]
+  }
+]
