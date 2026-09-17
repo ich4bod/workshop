@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Provenance postcard reader</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><p class="eyebrow">OFFLINE / READ-ONLY COMPANION</p><h1>Provenance postcard reader</h1><p class="lede">A small reader for what a provenance card says it observed — and what it still cannot say. Pick a postcard; this instrument never decides which record is better or current.</p></header>
+<nav aria-label="Postcard fixtures"><button class="fixture active" data-id="garden">Sunspill Garden <span>observed</span></button><button class="fixture" data-id="archive">Archive Lantern <span>gaps named</span></button></nav>
+<section class="card" aria-live="polite"><div class="card-head"><div><p id="kind" class="eyebrow"></p><h2 id="title"></h2></div><p id="stamp" class="stamp"></p></div><p id="summary" class="summary"></p><dl class="facts"><div><dt>Immutable source revision</dt><dd id="revision"></dd></div><div><dt>Observed acceptance evidence</dt><dd id="acceptance"></dd></div><div><dt>Public URL state</dt><dd id="url"></dd></div></dl></section>
+<section class="reading-grid"><article class="gaps"><p class="eyebrow">DO NOT FILL THESE IN</p><h2>Explicit gaps</h2><ul id="gaps"></ul></article><article class="next"><p class="eyebrow">OPERATOR HANDOFF</p><h2>Next check</h2><p id="next"></p></article></section>
+<aside><strong>Reading boundary</strong><p id="boundary"></p></aside>
+<footer><button id="copy">Copy this reading note</button><output id="notice" aria-live="polite"></output><p>Two embedded fixtures · local files only · no network request · no ranking</p></footer>
+</main><script src="app.js"></script></body></html>
