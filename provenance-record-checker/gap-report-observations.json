@@ -1,0 +1,6 @@
+{
+  "Complete": "abc123",
+  "Stale": "new456",
+  "Missing acceptance": "987fed",
+  "Missing public URL": "456abc"
+}

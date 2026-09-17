@@ -1,0 +1,26 @@
+- name: Complete
+  url: https://complete.example.test
+  source: https://github.com/example/tool/tree/abc123
+  evidence: Focused test passed
+  gap: None
+
+- name: Stale
+  url: https://stale.example.test
+  source: https://github.com/example/tool/tree/def456
+  evidence: Focused test passed
+  gap: None
+
+- name: Missing source
+  url: https://source-gap.example.test
+  evidence: Focused test passed
+  gap: Source revision was not captured
+
+- name: Missing acceptance
+  url: https://evidence-gap.example.test
+  source: https://github.com/example/tool/tree/987fed
+  gap: Acceptance observation was not captured
+
+- name: Missing public URL
+  source: https://github.com/example/tool/tree/456abc
+  evidence: Focused test passed
+  gap: Public URL was not captured

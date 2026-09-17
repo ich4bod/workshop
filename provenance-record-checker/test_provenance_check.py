@@ -9,6 +9,7 @@ from provenance_audit import audit
 from provenance_check import read_creation, record_for
 from provenance_compare import render
 from provenance_refresh import refresh_report
+from provenance_gap_report import read_creations, render as render_gap_report
 
 
 class ProvenanceCheckTests(unittest.TestCase):
@@ -102,6 +103,29 @@ class ProvenanceCheckTests(unittest.TestCase):
         report = render(record_for(read_creation(self.path, "Complete")), record_for(read_creation(self.path, "Missing source")))
         for text in ["Source revision", "abc123", "Acceptance record", "Focused test passed", "Public URL", "https://source-gap.example.test", "Bounded gap", "Source revision was not captured", "| Missing fields | None | source |", "does not rank either trace"]:
             self.assertIn(text, report)
+
+    def test_gap_report_groups_current_stale_and_distinct_missing_fields(self):
+        self.path.write_text(
+            """- name: Complete\n  url: https://complete.example.test\n  source: https://github.com/example/tool/tree/abc123\n  evidence: Focused test passed\n  gap: None\n\n- name: Stale\n  url: https://stale.example.test\n  source: https://github.com/example/tool/tree/def456\n  evidence: Focused test passed\n  gap: None\n\n- name: Missing source\n  url: https://source-gap.example.test\n  evidence: Focused test passed\n  gap: Source revision was not captured\n\n- name: Missing acceptance\n  url: https://evidence-gap.example.test\n  source: https://github.com/example/tool/tree/987fed\n  gap: Acceptance observation was not captured\n\n- name: Missing public URL\n  source: https://github.com/example/tool/tree/456abc\n  evidence: Focused test passed\n  gap: Public URL was not captured\n"""
+        )
+        observations = {"Complete": "abc123", "Stale": "new456", "Missing acceptance": "987fed", "Missing public URL": "456abc"}
+        report = render_gap_report(read_creations(self.path), observations)
+        for text in ["## Source revision", "**Stale** — stale (recorded def456; observed new456)", "**Missing source** — absent", "## Acceptance evidence", "**Missing acceptance** — absent (unknown)", "## Public URL", "**Missing public URL** — absent", "## Zero-gap records", "**Complete** — source revision matched an observation"]:
+            self.assertIn(text, report)
+        self.assertNotIn("**Missing acceptance** — source revision", report)
+
+    def test_gap_report_cli_is_deterministic(self):
+        observations = Path(tempfile.mkstemp(suffix=".json")[1])
+        observations.write_text(json.dumps({"Traced": "abc123"}))
+        try:
+            command = [sys.executable, "provenance_gap_report.py", "--creations", str(self.path), "--observations", str(observations)]
+            first = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
+            second = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
+            self.assertEqual(first.stdout, second.stdout)
+            self.assertIn("**Traced** — source revision matched an observation", first.stdout)
+            self.assertIn("**Incomplete** — absent (unknown)", first.stdout)
+        finally:
+            observations.unlink()
 
     def test_labels_absent_fields_separately(self):
         result = record_for(read_creation(self.path, "Incomplete"))
