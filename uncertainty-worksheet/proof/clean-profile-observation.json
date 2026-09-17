@@ -1,0 +1,15 @@
+{
+  "profile": "fresh temporary Chromium user-data directory",
+  "packet": "downloaded fixture with an added option",
+  "requiredSections": [
+    "Repair the current printer",
+    "Borrow a printer",
+    "Assumptions:",
+    "Disconfirming evidence:",
+    "Agreement:",
+    "Conflict:",
+    "Unresolved questions:",
+    "does not rank options"
+  ],
+  "offlineReload": "passed; context network disabled before file:// reload"
+}
