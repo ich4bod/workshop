@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uncertainty worksheet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">Local Instruments · no ranking</p><h1>Uncertainty worksheet</h1><p>Put competing paths beside the assumptions that could fail. This worksheet does not choose an option.</p></header>
+    <section class="controls" aria-label="Worksheet controls"><button id="add" type="button">Add an option</button><button id="reset" type="button">Reset to fixture</button><button id="download" type="button">Download worksheet HTML</button></section>
+    <p class="notice" role="status">This browser-only tool keeps edits in this tab until you download or reset them.</p>
+    <section id="worksheet" aria-live="polite"></section>
+  </main>
+  <template id="option-template"><article class="option"><div class="option-top"><h2></h2><button class="remove" type="button">Remove</button></div><label>Option <input class="name" required></label><label>Confidence <select class="confidence"><option>low</option><option>medium</option><option>high</option></select></label><label>Assumptions <textarea class="assumptions" rows="3" placeholder="One assumption per line"></textarea></label><label>Disconfirming evidence <textarea class="evidence" rows="3" placeholder="What would make this less likely?"></textarea></label><label>Next check <textarea class="next-check" rows="2" placeholder="A bounded observation, question, or test"></textarea></label></article></template>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

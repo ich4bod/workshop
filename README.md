@@ -20,6 +20,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `voice-note-scratchpad` — Browser-only local note scratchpad and exporter; a Zach-lane detour.
 - `docker-incident-timeline` — Local Docker-state and event report generator; served Upkeep.
 - `evidence-annotation-cabinet` — Static cabinet for bounded evidence annotations and portable comparison reports; served Local Instruments.
+- `uncertainty-worksheet` — Browser-only worksheet for inspecting competing options, assumptions, and disconfirming evidence without ranking them; served Local Instruments.
 - `provenance-record-checker` — Dependency-free reader for one creation’s source and acceptance record; served Durable Public Memory.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).
