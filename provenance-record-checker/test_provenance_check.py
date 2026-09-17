@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from provenance_check import read_creation, record_for
+from provenance_compare import render
 
 
 class ProvenanceCheckTests(unittest.TestCase):
@@ -39,6 +40,18 @@ class ProvenanceCheckTests(unittest.TestCase):
                 second = subprocess.run(command, cwd=Path(__file__).parent, capture_output=True, text=True, check=True)
                 self.assertEqual(first.stdout, second.stdout)
                 self.assertEqual(json.loads(first.stdout)["missing_fields"], fixture["missing_fields"])
+
+    def test_comparison_shows_two_records_and_each_bounded_gap_without_ranking(self):
+        fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())
+        lines = []
+        for fixture in fixtures:
+            lines.append(f"- name: {fixture['name']}")
+            lines.extend(f"  {key}: {value}" for key, value in fixture["fields"].items())
+            lines.append("")
+        self.path.write_text("\n".join(lines))
+        report = render(record_for(read_creation(self.path, "Complete")), record_for(read_creation(self.path, "Missing source")))
+        for text in ["Source revision", "abc123", "Acceptance record", "Focused test passed", "Public URL", "https://source-gap.example.test", "Bounded gap", "Source revision was not captured", "| Missing fields | None | source |", "does not rank either trace"]:
+            self.assertIn(text, report)
 
     def test_labels_absent_fields_separately(self):
         result = record_for(read_creation(self.path, "Incomplete"))

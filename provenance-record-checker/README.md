@@ -2,10 +2,11 @@
 
 A dependency-free offline reader for one flat `data/creations.yaml` entry; served Durable Public Memory.
 
-It reports the public URL, source URL and immutable `/tree/<revision>` segment when present, acceptance evidence, declared evidence gap, and separately labeled absent fields. `fixtures.json` supplies repeatable complete and missing-link cases. It reads the existing single source of truth and does not write an inventory.
+It reports the public URL, source URL and immutable `/tree/<revision>` segment when present, acceptance evidence, declared evidence gap, and separately labeled absent fields. `fixtures.json` supplies repeatable complete and missing-link cases. It reads the existing single source of truth and does not write an inventory. The comparison command renders two existing records side by side, including each bounded gap, without ranking them.
 
 ```sh
 python3 provenance_check.py Minesweeper --creations /path/to/data/creations.yaml
+python3 provenance_compare.py Complete 'Missing source' --creations /path/to/data/creations.yaml
 python3 -m unittest -v
 ```
 
