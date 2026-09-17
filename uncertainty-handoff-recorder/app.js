@@ -3,7 +3,9 @@ const preview = document.querySelector('#preview');
 const exportButton = document.querySelector('#export');
 const importInput = document.querySelector('#import');
 const resetButton = document.querySelector('#reset');
+const exportStatus = document.querySelector('#exportStatus');
 let record = null;
+if (!document.querySelector('#readAt').value) document.querySelector('#readAt').value = new Date().toISOString().slice(0, 16);
 
 const fields = [
   ['observations', 'Retained observations'],
@@ -50,6 +52,7 @@ exportButton.addEventListener('click', () => {
   const blob = new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' });
   const link = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'reader-handoff-record.json' });
   link.click();
+  exportStatus.textContent = 'Export started: reader-handoff-record.json';
   setTimeout(() => URL.revokeObjectURL(link.href), 0);
 });
 importInput.addEventListener('change', async () => {
@@ -58,8 +61,8 @@ importInput.addEventListener('change', async () => {
   try {
     const value = JSON.parse(await file.text());
     if (value.format !== 'uncertainty-reader-handoff/v1' || typeof value.packet !== 'string' || !fields.every(([id]) => Array.isArray(value[id]))) throw new Error('not a reader handoff record');
-    record = value; fill(value); render(value); exportButton.disabled = false;
+    record = value; fill(value); render(value); exportButton.disabled = false; exportStatus.textContent = 'Reloaded local reader handoff record.';
   } catch (error) { preview.innerHTML = `<p class="error">Could not reload this file: ${escape(error.message)}.</p>`; }
   importInput.value = '';
 });
-resetButton.addEventListener('click', () => { form.reset(); record = null; exportButton.disabled = true; preview.innerHTML = '<p class="empty">Fill in the handoff above. Blank sections will remain explicit in the record.</p>'; });
+resetButton.addEventListener('click', () => { form.reset(); document.querySelector('#readAt').value = new Date().toISOString().slice(0, 16); record = null; exportButton.disabled = true; exportStatus.textContent = ''; preview.innerHTML = '<p class="empty">Fill in the handoff above. Blank sections will remain explicit in the record.</p>'; });

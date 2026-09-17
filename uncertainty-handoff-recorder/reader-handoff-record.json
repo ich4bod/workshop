@@ -3,7 +3,7 @@
   "boundary": "Reader response only. It retains observations and gaps without a verdict, ranking, or recommendation.",
   "packet": "Quiet sensor alert · file handoff",
   "reader": "Clean-profile replay",
-  "readAt": null,
+  "readAt": "2026-09-17T08:09",
   "observations": [
     "The alert cleared after six minutes",
     "Confidence belongs to observations"

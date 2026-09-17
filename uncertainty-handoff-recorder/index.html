@@ -24,7 +24,7 @@
       <label>Disagreements or tensions <small>What did not line up, or what did they question?</small><textarea id="disagreements" name="disagreements" rows="4" placeholder="One disagreement per line, or leave blank"></textarea></label>
       <label>Missing context <small>What did the handoff not let them know?</small><textarea id="missingContext" name="missingContext" rows="4" placeholder="One missing context item per line, or leave blank"></textarea></label>
       <label>Unresolved items <small>What remains to check after the reading?</small><textarea id="unresolved" name="unresolved" rows="4" placeholder="One unresolved item per line, or leave blank"></textarea></label>
-      <div class="actions"><button type="submit">Preview handoff</button><button id="export" type="button" disabled>Export record</button><label class="import">Reload record<input id="import" type="file" accept="application/json,.json"></label><button id="reset" type="button" class="quiet">Start over</button></div>
+      <div class="actions"><button type="submit">Preview handoff</button><button id="export" type="button" disabled>Export record</button><label class="import">Reload record<input id="import" type="file" accept="application/json,.json"></label><button id="reset" type="button" class="quiet">Start over</button></div><p id="exportStatus" class="action-status" aria-live="polite"></p>
     </form>
     <section id="preview" aria-live="polite" aria-label="Handoff record"><p class="empty">Fill in the handoff above. Blank sections will remain explicit in the record.</p></section>
   </main>
