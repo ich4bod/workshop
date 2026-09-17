@@ -36,5 +36,6 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `uncertainty-handoff-recorder` — Offline reader-response recorder that exports retained observations, disagreements, missing context, and unresolved items without a verdict; served Local Instruments.
 - `uncertainty-packet-reader-card` — Self-contained field card for inspecting uncertainty facets without a verdict; served Local Instruments.
 - `uncertainty-packet-field-cabinet` — Direct-file cabinet of incident, decision, and handoff packet shapes with a no-verdict index export; served Local Instruments.
+- `uncertainty-packet-prompt-deck` — Direct-file first-look prompt deck with a bounded no-verdict reader record; served Local Instruments.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).

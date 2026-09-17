@@ -1,0 +1,11 @@
+{
+  "format": "uncertainty-prompt-deck-reader-record/v1",
+  "boundary": "Reader observations, misunderstandings, and unresolved questions only. No score, ranking, recommendation, or verdict.",
+  "prompt": {
+    "title": "The loose thread",
+    "text": "Name one place where you wanted another sentence, source, or piece of context."
+  },
+  "observations": "The packet keeps a gap visible.",
+  "misunderstandings": "I expected a source beside the claim.",
+  "unresolvedQuestions": "What would change after a return visit?"
+}
