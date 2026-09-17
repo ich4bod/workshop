@@ -8,6 +8,7 @@ from pathlib import Path
 from provenance_audit import audit
 from provenance_check import read_creation, record_for
 from provenance_compare import render
+from provenance_refresh import refresh_report
 
 
 class ProvenanceCheckTests(unittest.TestCase):
@@ -79,6 +80,16 @@ class ProvenanceCheckTests(unittest.TestCase):
             payload = json.loads(result.stdout)
             self.assertEqual(payload["status"], status)
             self.assertEqual(payload["field"], "source_revision")
+
+    def test_source_refresh_distinguishes_unchanged_and_changed_evidence_gaps(self):
+        before = read_creation(self.path, "Traced")
+        unchanged = refresh_report(before, before)
+        after = dict(before, source="https://github.com/example/tool/tree/def456")
+        changed = refresh_report(before, after)
+        self.assertEqual(unchanged, {"creation": "Traced", "changed_fields": [], "evidence_gaps": [], "status": "unchanged"})
+        self.assertEqual(changed["status"], "changed")
+        self.assertEqual(changed["changed_fields"], ["source_revision"])
+        self.assertEqual(changed["evidence_gaps"], ["acceptance evidence was unchanged after source_revision changed", "public URL was unchanged after source_revision changed"])
 
     def test_comparison_shows_two_records_and_each_bounded_gap_without_ranking(self):
         fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())
