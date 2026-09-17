@@ -87,10 +87,19 @@ class ProvenanceCheckTests(unittest.TestCase):
         unchanged = refresh_report(before, before)
         after = dict(before, source="https://github.com/example/tool/tree/def456")
         changed = refresh_report(before, after)
-        self.assertEqual(unchanged, {"creation": "Traced", "changed_fields": [], "evidence_gaps": [], "status": "unchanged"})
+        self.assertEqual(unchanged, {"creation": "Traced", "changed_fields": [], "evidence_gaps": [], "required_operator_inputs": [], "status": "unchanged", "unknown_fields": []})
         self.assertEqual(changed["status"], "changed")
         self.assertEqual(changed["changed_fields"], ["source_revision"])
         self.assertEqual(changed["evidence_gaps"], ["acceptance evidence was unchanged after source_revision changed", "public URL was unchanged after source_revision changed"])
+        self.assertEqual(changed["required_operator_inputs"], ["acceptance evidence observed for source revision def456", "public URL observation for source revision def456"])
+        self.assertEqual(changed["unknown_fields"], [])
+
+    def test_source_refresh_names_missing_observed_revision_as_an_operator_input(self):
+        before = read_creation(self.path, "Traced")
+        after = dict(before, source="")
+        report = refresh_report(before, after)
+        self.assertEqual(report["unknown_fields"], ["source_revision"])
+        self.assertEqual(report["required_operator_inputs"], ["immutable source revision observed for the refresh", "acceptance evidence observed for the refreshed source", "public URL observation for the refreshed source"])
 
     def test_source_recreation_fixtures_keep_old_evidence_as_an_explicit_gap(self):
         root = Path(__file__).parent
@@ -99,6 +108,8 @@ class ProvenanceCheckTests(unittest.TestCase):
         report = json.loads(completed.stdout)
         self.assertEqual(report["changed_fields"], ["source_revision"])
         self.assertEqual(report["evidence_gaps"], ["acceptance evidence was unchanged after source_revision changed", "public URL was unchanged after source_revision changed"])
+        self.assertEqual(report["required_operator_inputs"], ["acceptance evidence observed for source revision def456", "public URL observation for source revision def456"])
+        self.assertEqual(report["unknown_fields"], [])
 
     def test_comparison_shows_two_records_and_each_bounded_gap_without_ranking(self):
         fixtures = json.loads((Path(__file__).parent / "fixtures.json").read_text())

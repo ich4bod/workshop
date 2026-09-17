@@ -16,3 +16,9 @@ python3 -m unittest -v
 ```
 
 The parser intentionally accepts only the existing file's flat list of scalar fields, rather than claiming to be a general YAML parser.
+
+## Observed-revision handoff
+
+After an operator observes a new immutable source revision, save the prior and refreshed `creations.yaml` records as two offline snapshots, then run `provenance_refresh.py` with the creation name. The report preserves the observed revision, identifies fields that were retained, lists the two new inputs needed to support the refreshed revision (acceptance evidence and a public-URL observation), and emits `unknown_fields` even when that list is empty. It does not fetch GitHub, alter `data/creations.yaml`, or turn retained evidence into a claim about the new revision.
+
+`source-recreation-before.yaml` and `source-recreation-after.yaml` are a complete handoff fixture: `abc123` becomes the observed `def456`, while its earlier acceptance evidence and URL remain recorded. Run the example command above from this directory to reproduce the report.

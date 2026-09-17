@@ -28,11 +28,27 @@ def refresh_report(before: dict[str, str], after: dict[str, str]) -> dict[str, o
         gaps.append("acceptance evidence was unchanged after source_revision changed")
     if "source_revision" in changed_fields and "public_url" not in changed_fields:
         gaps.append("public URL was unchanged after source_revision changed")
+    unknown_fields = [
+        field
+        for field in ("source_revision", "acceptance_evidence", "public_url")
+        if not after_record[field]
+    ]
+    required_operator_inputs: list[str] = []
+    if "source_revision" in changed_fields:
+        if after_record["source_revision"]:
+            revision = f"source revision {after_record['source_revision']}"
+        else:
+            required_operator_inputs.append("immutable source revision observed for the refresh")
+            revision = "the refreshed source"
+        required_operator_inputs.append(f"acceptance evidence observed for {revision}")
+        required_operator_inputs.append(f"public URL observation for {revision}")
     return {
         "creation": before_record["creation"],
         "changed_fields": changed_fields,
         "evidence_gaps": gaps,
+        "required_operator_inputs": required_operator_inputs,
         "status": "changed" if changed_fields else "unchanged",
+        "unknown_fields": unknown_fields,
     }
 
 
