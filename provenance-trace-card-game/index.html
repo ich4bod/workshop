@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trace Triage</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main>
+  <header><p class="eyebrow">A no-score provenance sorting game</p><h1>Trace Triage</h1><p class="lede">Two traces arrived at the desk. Place each field where you think it belongs, name what still bothers you, and take your notes with you. This board never tells you which trace is “better.”</p></header>
+  <section class="brief" aria-label="Round brief"><div><span>ROUND 01</span><strong>Two public creation traces</strong></div><p>Sort by the kind of statement you see—not whether you trust the record.</p></section>
+  <section id="cards" class="cards" aria-label="Field cards"></section>
+  <section class="zones" aria-label="Placement zones">
+    <article data-zone="retained"><h2>Retained observation</h2><p>A fact carried from a recorded trace.</p><div class="drop" tabindex="0" aria-label="Retained observation drop zone"></div></article>
+    <article data-zone="gap"><h2>Explicit gap</h2><p>What the record says it does not establish.</p><div class="drop" tabindex="0" aria-label="Explicit gap drop zone"></div></article>
+    <article data-zone="check"><h2>Operator check</h2><p>A fresh observation someone must make.</p><div class="drop" tabindex="0" aria-label="Operator check drop zone"></div></article>
+  </section>
+  <section class="notes"><label for="question">What remains unresolved for you?</label><textarea id="question" placeholder="A question is more useful here than a verdict."></textarea><div><button id="export">Export field notes</button><button id="reset" class="quiet">Start over</button><span id="status" role="status"></span></div></section>
+  <footer>Offline by design · drag cards, or select a card then click a zone · no network, score, ranking, or answer key.</footer>
+</main><script src="app.js"></script></body></html>
