@@ -13,3 +13,9 @@ node verify-handoff.mjs
 ```
 
 The handoff check compares the complete fixture with `fixtures/missing-evidence.json`, asserts that both preserve options, assumptions, agreement, conflict, and unresolved questions, and confirms only the incomplete packet names its missing evidence and next check. It writes the inspected reports to `proof/missing-evidence-observation.txt`.
+
+```sh
+node verify-discrepancies.mjs
+```
+
+`fixtures/independent-reader-discrepancies.json` is a plain handoff record for observations a second reader can make without selecting an option. The verifier requires every record to name an observation, disagreement, missing context, and unresolved item, and rejects ranking or recommendation fields.

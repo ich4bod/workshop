@@ -1,0 +1,25 @@
+{
+  "readerInstructions": [
+    "Read the packet without choosing an option.",
+    "Name what is observed, disputed, or absent in the packet.",
+    "Leave an unresolved item when the packet cannot settle it."
+  ],
+  "packet": "two-options.json",
+  "options": ["Repair the current printer", "Buy a compact thermal printer"],
+  "records": [
+    {
+      "question": "What does the reader need before comparing costs?",
+      "observation": "Both options name a next check, but neither packet entry gives a concrete price.",
+      "disagreement": "The packet treats the repair quote and label-storage test as different checks; it does not establish which cost matters more.",
+      "missingContext": "No current repair quote or replacement price is recorded.",
+      "unresolvedItem": "Whether either path stays within the workshop budget."
+    },
+    {
+      "question": "What evidence challenges each option?",
+      "observation": "The repair option records a continuing fault and end-of-life status; the thermal option records fading and a core-size mismatch.",
+      "disagreement": "The evidence is different in kind, so the packet does not make the two risks directly comparable.",
+      "missingContext": "Neither failure's frequency or replacement cost is recorded.",
+      "unresolvedItem": "Whether the listed evidence changes after the next checks."
+    }
+  ]
+}
