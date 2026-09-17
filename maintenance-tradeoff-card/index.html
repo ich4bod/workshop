@@ -1,0 +1,8 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maintenance tradeoff card</title>
+<style>body{max-width:900px;margin:2rem auto;padding:0 1rem;font:16px system-ui;line-height:1.5}article,header{border:1px solid #999;padding:1rem;margin:1rem 0}textarea{display:block;width:100%;box-sizing:border-box}button{margin-right:.5rem}small{color:#555}</style>
+<main><header><p>Local Instruments · no recommendation</p><h1>Maintenance tradeoff card</h1><p id="question"></p><p><strong>Review date:</strong> <span id="review-date"></span></p><p><strong>Disagreement:</strong> <span id="disagreement"></span></p><button id="download">Download self-contained report</button></header><section id="choices"></section></main>
+<template id="choice"><article><h2></h2><label>Confidence <input class="confidence"></label><label>Risks <textarea class="risks" rows="3"></textarea></label><label>Evidence links or notes <textarea class="evidence" rows="3"></textarea></label><label>Missing fields or evidence <textarea class="missing" rows="3"></textarea></label></article></template>
+<script type="module" src="app.js"></script>

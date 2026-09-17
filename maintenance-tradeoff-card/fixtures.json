@@ -1,0 +1,12 @@
+{
+  "title": "Choose a response to the old build runner",
+  "reviewDate": "2026-10-01",
+  "question": "What evidence would make this maintenance choice less uncertain?",
+  "disagreement": "Replacing reduces the old-image risk, while pinning may preserve a known workflow during the migration.",
+  "choices": [
+    {"name": "Patch", "confidence": "medium", "risks": ["A patch may not cover the unsupported base image"], "evidence": ["The vendor advisory names the affected package"], "missing": []},
+    {"name": "Pin", "confidence": "low", "risks": ["Known vulnerable image remains in use"], "evidence": ["Last successful build used this image"], "missing": ["No expiry date for the exception"]},
+    {"name": "Replace", "confidence": "medium", "risks": ["Migration could break the release job"], "evidence": ["A replacement image builds the fixture project"], "missing": ["No production-like release rehearsal"]},
+    {"name": "Defer", "confidence": "low", "risks": ["Support window may close before review"], "evidence": [], "missing": ["No owner for the decision", "No documented review trigger"]}
+  ]
+}
