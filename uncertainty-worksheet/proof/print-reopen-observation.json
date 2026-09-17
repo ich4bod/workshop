@@ -9,8 +9,12 @@
     "Agreement:",
     "Conflict:",
     "Unresolved questions:",
+    "Export boundary",
+    "Retained observations",
+    "Operator-supplied next check",
+    "Explicit unknown gaps",
     "does not rank options"
   ],
-  "sizeBytes": 8201,
+  "sizeBytes": 23570,
   "result": "passed; local PDF text preserves the packet structure"
 }

@@ -9,6 +9,10 @@
     "Agreement:",
     "Conflict:",
     "Unresolved questions:",
+    "Export boundary",
+    "Retained observations",
+    "Operator-supplied next check",
+    "Explicit unknown gaps",
     "does not rank options"
   ],
   "offlineReload": "passed; context network disabled before file:// reload"

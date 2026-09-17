@@ -40,7 +40,7 @@ server.listen(8766, '127.0.0.1', async () => {
     if (!report.includes('Borrow a printer') || !report.includes('Unresolved questions') || !report.includes('does not rank options')) throw new Error('standalone packet omitted an uncertainty field or no-ranking boundary');
     const packet = await context.newPage();
     await packet.goto(`file://${packetPath}`, { waitUntil: 'load' });
-    const requiredSections = ['Repair the current printer', 'Borrow a printer', 'Assumptions:', 'Disconfirming evidence:', 'Agreement:', 'Conflict:', 'Unresolved questions:', 'does not rank options'];
+    const requiredSections = ['Repair the current printer', 'Borrow a printer', 'Assumptions:', 'Disconfirming evidence:', 'Agreement:', 'Conflict:', 'Unresolved questions:', 'Export boundary', 'Retained observations', 'Operator-supplied next check', 'Explicit unknown gaps', 'does not rank options'];
     const packetText = await packet.locator('body').textContent();
     const missingBeforeReload = requiredSections.filter((section) => !packetText.includes(section));
     if (missingBeforeReload.length) throw new Error(`clean-profile packet omitted: ${missingBeforeReload.join(', ')}`);
@@ -64,7 +64,11 @@ server.listen(8766, '127.0.0.1', async () => {
     await context.setOffline(false);
     await page.getByRole('button', { name: 'Reset to fixture' }).click();
     if (await page.locator('.option').count() !== 2 || (await page.locator('body').textContent()).includes('Borrow a printer')) throw new Error('reset did not restore fixture');
-    console.log('browser smoke passed: clean profile, fixture, offline standalone packet reload, reset');
+    await page.locator('.option').last().locator('.evidence').fill('');
+    const [incompleteDownload] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Download worksheet HTML' }).click()]);
+    const incompleteHtml = await fs.promises.readFile(await incompleteDownload.path(), 'utf8');
+    if (!incompleteHtml.includes('Buy a compact thermal printer: Disconfirming evidence')) throw new Error('incomplete packet did not name its explicit evidence gap');
+    console.log('browser smoke passed: complete and incomplete packets, export boundary, clean profile, offline standalone packet reload, reset');
   } catch (error) {
     console.error(error);
     process.exitCode = 1;
