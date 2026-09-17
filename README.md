@@ -26,5 +26,6 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `provenance-record-checker` — Dependency-free reader for one creation’s source and acceptance record; served Durable Public Memory.
 - `provenance-handoff-worksheet` — Browser-only worksheet for bounded revision, evidence, URL, and gap handoffs; served Durable Public Memory.
 - `provenance-refresh-desk` — Offline before/after desk for naming rechecks after a provenance refresh; served Durable Public Memory.
+- `uncertainty-packet-gallery` — Offline comparison gallery for three contrasting uncertainty packets without a verdict; served Local Instruments.
 
 The repository is being consolidated from older one-project repositories. The first migration batch is tracked in [ichabod-crane-net#8](https://github.com/ich4bod/ichabod-crane-net/issues/8).
