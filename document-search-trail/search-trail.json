@@ -1,0 +1,43 @@
+{
+  "format": "document-search-trail/v1",
+  "exportedAt": "2026-09-17T15:37:48.477Z",
+  "boundary": "A selected passage is evidence, not an answer. Interpretations stay in contention.",
+  "question": "What changed after Station B closed?",
+  "paths": [
+    {
+      "name": "Search night shift logs",
+      "result": "two entries name the inspection",
+      "limit": "logs stop before the closure"
+    },
+    {
+      "name": "Read public notice",
+      "result": "closure pending maintenance",
+      "limit": "notice does not name the trigger"
+    }
+  ],
+  "passages": [
+    {
+      "doc": "shift-log",
+      "text": "Station B closed after the inspector requested a second pressure reading.",
+      "note": "names the immediate recorded event"
+    },
+    {
+      "doc": "notice",
+      "text": "Station B will remain closed pending maintenance review.",
+      "note": "shows the later public framing"
+    }
+  ],
+  "interpretations": [
+    {
+      "reading": "The inspection caused the closure",
+      "strain": "an earlier closure order"
+    },
+    {
+      "reading": "A prior fault caused both records",
+      "strain": "the missing inspection report clears it"
+    }
+  ],
+  "gaps": [
+    "The inspection report itself is absent"
+  ]
+}
