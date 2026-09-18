@@ -8,6 +8,13 @@ readonly IMAGE="zricethezav/gitleaks:v8.18.4"
 readonly WORK_ROOT="${TMPDIR:-/tmp}/ichabod-secret-scan"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly CONFIG="$SCRIPT_DIR/gitleaks.toml"
+readonly ENV_FILE="/home/ichabod/.config/ichabod/env"
+
+# Cron has no interactive GH_TOKEN. This is the fixed local credential file used by the host wrappers.
+set -a
+# shellcheck disable=SC1090
+source "$ENV_FILE"
+set +a
 
 workdir="$(mktemp -d "$WORK_ROOT.XXXXXX")"
 trap 'rm -rf "$workdir"' EXIT
@@ -24,8 +31,10 @@ fi
 
 findings=0
 failures=0
+scanned=0
 while IFS= read -r repo; do
   [ -n "$repo" ] || continue
+  scanned=$((scanned + 1))
   name="${repo#*/}"
   mirror="$workdir/$name.git"
   report="$workdir/$name.json"
@@ -61,3 +70,4 @@ if [ "$findings" -gt 0 ]; then
   printf 'secret-scan finding: %s possible secret(s); rotate the affected credential and remove it from history before closing the incident\n' "$findings" >&2
   exit 1
 fi
+printf 'secret-scan clean: %s public repositories scanned\n' "$scanned"
