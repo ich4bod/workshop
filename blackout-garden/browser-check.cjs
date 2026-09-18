@@ -1,30 +1,24 @@
 const { chromium } = require('playwright-core');
+const route = async (page, nights) => {
+  for (let n = 0; n < 3; n++) {
+    for (const id of nights[n]) await page.locator(`[data-id="${id}"]`).click();
+    await page.getByRole('button', { name: /Hold the night/ }).click();
+    await page.locator('dialog').waitFor();
+    if (n < 2) await page.getByRole('button', { name: /Carry the dawn forward/ }).click();
+  }
+};
 (async () => {
-  const b = await chromium.launch({ headless: true });
-  const url = process.env.URL || 'http://blackout-garden.ichabod-crane.net';
-  const p = await b.newPage({ viewport: { width: 1280, height: 850 } });
-  await p.goto(url, { waitUntil: 'networkidle' });
-  for (const id of ['hall', 'maya', 'noah']) await p.locator(`[data-id="${id}"]`).click();
-  if (await p.locator('.place.on').count() !== 3) throw Error('garden routing did not light three places');
-  await p.getByRole('button', { name: /Hold the night/ }).click(); await p.locator('dialog').waitFor();
-  if (!(await p.locator('#resultText').textContent()).includes('died before dawn')) throw Error('garden overload did not exhaust battery');
-  if (await p.locator('.flooded').count() < 3 || await p.locator('.held').count() !== 2) throw Error('garden aftermath was not visible');
-  const ridge = await b.newPage(); await ridge.goto(url); await ridge.getByRole('button', { name: /02 · Ridge Relay/ }).click();
-  for (const id of ['clinic', 'pier', 'sato']) await ridge.locator(`[data-id="${id}"]`).click();
-  await ridge.getByRole('button', { name: /Hold the night/ }).click(); await ridge.locator('dialog').waitFor();
-  if (!(await ridge.locator('#resultText').textContent()).includes('Gale shear cut the east line')) throw Error('ridge gale did not cut exposed cable');
-  const safe = await b.newPage(); await safe.goto(url); await safe.getByRole('button', { name: /03 · Mill Yard/ }).click();
-  if (!(await safe.locator('#briefText').textContent()).includes('Saltwater')) throw Error('mill seep briefing missing');
-  if (await safe.locator('.seep').count() !== 2) throw Error('mill map does not mark two costly seep sites');
-  for (const id of ['bakery', 'crane', 'archive']) await safe.locator(`[data-id="${id}"]`).click();
-  await safe.getByRole('button', { name: /Hold the night/ }).click(); await safe.locator('dialog').waitFor();
-  if (!(await safe.locator('#resultText').textContent()).includes('Every cable held') || await safe.locator('.held').count() !== 3) throw Error('safe mill route did not hold');
-  const costly = await b.newPage({ viewport: { width: 1280, height: 850 } }); await costly.goto(url); await costly.getByRole('button', { name: /03 · Mill Yard/ }).click();
-  for (const id of ['bakery', 'works', 'quay']) await costly.locator(`[data-id="${id}"]`).click();
-  await costly.getByRole('button', { name: /Hold the night/ }).click(); await costly.locator('dialog').waitFor();
-  if (!(await costly.locator('#resultText').textContent()).includes('Brackish water drank the reserve')) throw Error('costly mill route did not show seep consequence');
-  if (await costly.locator('.held').count() !== 1 || await costly.locator('.flooded').count() !== 4) throw Error('costly mill aftermath was not spatially distinct');
-  await costly.screenshot({ path: '/w/proof-mill-costly.png', fullPage: true });
-  const narrow = await b.newPage({ viewport: { width: 390, height: 844 } }); await narrow.goto(url); await narrow.getByRole('button', { name: /03 · Mill Yard/ }).click(); await narrow.screenshot({ path: '/w/proof-mill-narrow.png', fullPage: true });
-  console.log('blackout garden three-block browser check passed'); await b.close();
+  const b = await chromium.launch({ headless: true }); const url = process.env.URL || 'http://blackout-garden.ichabod-crane.net';
+  const careful = await b.newPage({ viewport: { width: 1280, height: 850 } }); await careful.goto(url, { waitUntil: 'networkidle' });
+  if ((await careful.locator('#charge').textContent()) !== '15') throw Error('campaign did not begin with shared reserve');
+  await route(careful, [['hall'], ['clinic'], ['bakery', 'crane']]);
+  const comfortable = await careful.locator('#resultText').textContent(); if (!comfortable.includes('route drew 6 reserve')) throw Error('careful route did not retain enough final reserve');
+  if (await careful.locator('.held').count() !== 2) throw Error('careful final route did not hold two places');
+  if ((await careful.locator('#resultList').locator('li').count()) !== 3) throw Error('dawn receipt did not show all three nights');
+  await careful.screenshot({ path: '/w/proof-three-night-careful.png', fullPage: true });
+  const costly = await b.newPage({ viewport: { width: 390, height: 844 } }); await costly.goto(url); await route(costly, [['hall', 'maya', 'noah'], ['clinic', 'tower', 'rowan'], ['bakery', 'works', 'quay']]);
+  const thin = await costly.locator('#resultText').textContent(); if (!thin.includes('carried reserve was too thin')) throw Error('earlier spending did not constrain final night');
+  if (await costly.locator('.held').count() >= 2) throw Error('thin route was not visibly worse at dawn');
+  await costly.screenshot({ path: '/w/proof-three-night-thin.png', fullPage: true });
+  console.log('blackout garden three-night campaign browser check passed'); await b.close();
 })().catch(e => { console.error(e); process.exit(1); });
