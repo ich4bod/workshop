@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blackout Garden — reader route</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap');
+    :root { --ink:#152229; --paper:#e7dfc9; --rain:#90a9a3; --red:#c65a40; --gold:#e0b653; }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; display:grid; place-items:center; background:linear-gradient(135deg,#293940,#607b83); color:var(--ink); font:14px 'DM Mono',monospace; }
+    main { width:min(780px,calc(100% - 32px)); margin:24px; padding:30px; background:var(--paper); border:3px solid var(--ink); box-shadow:9px 9px 0 var(--red); }
+    p { line-height:1.55; } .eyebrow { margin:0; font-size:10px; font-weight:bold; letter-spacing:1.5px; } h1,h2 { font-family:Fraunces,serif; line-height:.95; } h1 { margin:7px 0 23px; font-size:45px; } h1 i { color:var(--red); } h2 { font-size:22px; margin:0 0 8px; } ol { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:0; list-style:none; counter-reset:route; } li { min-height:120px; padding:14px; border:2px solid var(--ink); background:#d8cfaf; counter-increment:route; } li::before { content:"0" counter(route); display:block; color:var(--red); font-weight:bold; margin-bottom:10px; } .choices { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; } section { border-top:1px solid var(--ink); padding-top:18px; } strong { color:var(--red); } a { display:inline-block; margin-top:22px; padding:13px 17px; background:var(--red); color:white; text-decoration:none; box-shadow:3px 3px 0 var(--ink); } @media(max-width:600px) { main { padding:22px; } h1 { font-size:37px; } ol,.choices { grid-template-columns:1fr; } li { min-height:0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">FRESH-READER ROUTE · NO COACHING</p>
+    <h1>BLACKOUT<br><i>GARDEN</i></h1>
+    <p>Play twice, alone. Do not look at the source or ask what the “right” route is. Each run takes about three minutes. Your only job is to decide what stays lit.</p>
+    <ol>
+      <li><strong>Choose places.</strong><br>On each night, click up to three cards, then hold the night.</li>
+      <li><strong>Read dawn.</strong><br>Notice the cost, the dark windows, and what crosses into the next map.</li>
+      <li><strong>Finish Mill Yard.</strong><br>Read all three lines of the final dawn receipt before restarting.</li>
+    </ol>
+    <section class="choices">
+      <div><h2>Run one: careful</h2><p>Try to leave enough charge for the last night. What did you sacrifice, and why?</p></div>
+      <div><h2>Run two: spendthrift</h2><p>Protect as much as you can early. What is different when you reach Mill Yard?</p></div>
+    </section>
+    <section><h2>Two notes for us</h2><p>After both routes, answer in one or two sentences each: <strong>When did you understand that the reserve was shared?</strong> And <strong>what did the final dawn receipt tell you that the map did not?</strong></p></section>
+    <a href="/">Open the storm route →</a>
+  </main>
+</body>
+</html>
