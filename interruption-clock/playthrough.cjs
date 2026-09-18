@@ -2,14 +2,14 @@ const { chromium } = require('playwright-core');
 const { resolve } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
-const pageUrl = pathToFileURL(resolve('index.html')).href;
+const pageUrl = process.env.PLAY_URL || pathToFileURL(resolve('index.html')).href;
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
 
   async function clockPage(name, width) {
     const context = await browser.newContext({ viewport: { width, height: 844 } });
-    await context.route('**/*', route => route.request().url().startsWith('file:') ? route.continue() : route.abort());
+    if (!process.env.PLAY_URL) await context.route('**/*', route => route.request().url().startsWith('file:') ? route.continue() : route.abort());
     const page = await context.newPage();
     await page.goto(pageUrl);
     await page.screenshot({ path: `/tmp/interruption-clock-${name}-${width}.png`, fullPage: true });
