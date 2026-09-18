@@ -1,1 +1,30 @@
-const { chromium }=require('playwright-core');(async()=>{const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1280,height:850}});await p.goto(process.env.URL||'http://blackout-garden.ichabod-crane.net',{waitUntil:'networkidle'});await p.locator('[data-id="hall"]').click();await p.locator('[data-id="maya"]').click();await p.locator('[data-id="noah"]').click();if(await p.locator('.place.on').count()!==3)throw Error('garden routing did not light three places');await p.getByRole('button',{name:/Hold the night/}).click();await p.locator('dialog').waitFor();if(!(await p.locator('#resultText').textContent()).includes('died before dawn'))throw Error('garden overload did not exhaust battery');if(await p.locator('.flooded').count()<3||await p.locator('.held').count()!==2)throw Error('garden aftermath was not visible');await p.screenshot({path:'/w/proof-wide.png',fullPage:true});const r=await b.newPage();await r.goto(process.env.URL||'http://blackout-garden.ichabod-crane.net');await r.getByRole('button',{name:/02 · Ridge Relay/}).click();if(!(await r.locator('#briefText').textContent()).includes('east-line cable'))throw Error('ridge hazard briefing missing');await r.locator('[data-id="clinic"]').click();await r.locator('[data-id="pier"]').click();await r.locator('[data-id="sato"]').click();await r.getByRole('button',{name:/Hold the night/}).click();await r.locator('dialog').waitFor();const ridge=await r.locator('#resultText').textContent();if(!ridge.includes('Gale shear cut the east line')||!ridge.includes('East Pump'))throw Error('ridge gale did not cut exposed cable');if(await r.locator('.held').count()!==1||await r.locator('.flooded').count()!==4)throw Error('ridge aftermath did not show spatial consequence');const n=await b.newPage({viewport:{width:390,height:844}});await n.goto(process.env.URL||'http://blackout-garden.ichabod-crane.net');await n.getByRole('button',{name:/02 · Ridge Relay/}).click();await n.screenshot({path:'/w/proof-narrow.png',fullPage:true});console.log('blackout garden two-block browser check passed');await b.close()})().catch(e=>{console.error(e);process.exit(1)})
+const { chromium } = require('playwright-core');
+(async () => {
+  const b = await chromium.launch({ headless: true });
+  const url = process.env.URL || 'http://blackout-garden.ichabod-crane.net';
+  const p = await b.newPage({ viewport: { width: 1280, height: 850 } });
+  await p.goto(url, { waitUntil: 'networkidle' });
+  for (const id of ['hall', 'maya', 'noah']) await p.locator(`[data-id="${id}"]`).click();
+  if (await p.locator('.place.on').count() !== 3) throw Error('garden routing did not light three places');
+  await p.getByRole('button', { name: /Hold the night/ }).click(); await p.locator('dialog').waitFor();
+  if (!(await p.locator('#resultText').textContent()).includes('died before dawn')) throw Error('garden overload did not exhaust battery');
+  if (await p.locator('.flooded').count() < 3 || await p.locator('.held').count() !== 2) throw Error('garden aftermath was not visible');
+  const ridge = await b.newPage(); await ridge.goto(url); await ridge.getByRole('button', { name: /02 · Ridge Relay/ }).click();
+  for (const id of ['clinic', 'pier', 'sato']) await ridge.locator(`[data-id="${id}"]`).click();
+  await ridge.getByRole('button', { name: /Hold the night/ }).click(); await ridge.locator('dialog').waitFor();
+  if (!(await ridge.locator('#resultText').textContent()).includes('Gale shear cut the east line')) throw Error('ridge gale did not cut exposed cable');
+  const safe = await b.newPage(); await safe.goto(url); await safe.getByRole('button', { name: /03 · Mill Yard/ }).click();
+  if (!(await safe.locator('#briefText').textContent()).includes('Saltwater')) throw Error('mill seep briefing missing');
+  if (await safe.locator('.seep').count() !== 2) throw Error('mill map does not mark two costly seep sites');
+  for (const id of ['bakery', 'crane', 'archive']) await safe.locator(`[data-id="${id}"]`).click();
+  await safe.getByRole('button', { name: /Hold the night/ }).click(); await safe.locator('dialog').waitFor();
+  if (!(await safe.locator('#resultText').textContent()).includes('Every cable held') || await safe.locator('.held').count() !== 3) throw Error('safe mill route did not hold');
+  const costly = await b.newPage({ viewport: { width: 1280, height: 850 } }); await costly.goto(url); await costly.getByRole('button', { name: /03 · Mill Yard/ }).click();
+  for (const id of ['bakery', 'works', 'quay']) await costly.locator(`[data-id="${id}"]`).click();
+  await costly.getByRole('button', { name: /Hold the night/ }).click(); await costly.locator('dialog').waitFor();
+  if (!(await costly.locator('#resultText').textContent()).includes('Brackish water drank the reserve')) throw Error('costly mill route did not show seep consequence');
+  if (await costly.locator('.held').count() !== 1 || await costly.locator('.flooded').count() !== 4) throw Error('costly mill aftermath was not spatially distinct');
+  await costly.screenshot({ path: '/w/proof-mill-costly.png', fullPage: true });
+  const narrow = await b.newPage({ viewport: { width: 390, height: 844 } }); await narrow.goto(url); await narrow.getByRole('button', { name: /03 · Mill Yard/ }).click(); await narrow.screenshot({ path: '/w/proof-mill-narrow.png', fullPage: true });
+  console.log('blackout garden three-block browser check passed'); await b.close();
+})().catch(e => { console.error(e); process.exit(1); });
