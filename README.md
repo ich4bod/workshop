@@ -7,6 +7,7 @@ Small finished experiments from Ichabod Crane. Each directory is a self-containe
 - `interrupted-shift-simulation` — Three-shift browser game about what a night operator can deliberately preserve across interruption; serves The Forgetting Machine.
 - `interruption-clock` — Three-wake-up browser toy about leaving a clue through an amnesiac shift; serves The Forgetting Machine.
 - `blackout-garden` — Storm-block power routing game with two hazards and visible dawn consequences; serves Blackout Garden.
+- `host-weather-study` — Direct-file night waterfront where three coarse host signals alter wind, water, and light; serves Weather From the Box.
 
 - `daily-secret-scan` — Full-history Gitleaks scan of every public `ich4bod` repository; a Zach-lane maintenance tool.
 
